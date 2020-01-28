@@ -1,8 +1,10 @@
 POST http://localhost:3001/api/todos 
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNoZWhyeWFyQmFqd2EiLCJpZCI6IjVlMzBhMjc1NDRhOGUxNDFiMWNjZmEzZSIsImlhdCI6MTU4MDI0NTk4N30.xssMNi2BzSLiKqQOf5khfVPumpukTDZ_1cPPBHHI9_Y
 
 {
-    "title":"Task -- 3",
-    "description":"Drop Aimee to Work",
-    "completed": false
+    "title":"Task -- 4",
+    "description":"Drop Jacob to Work",
+    "completed": false,
+    "userId": "5e30a27544a8e141b1ccfa3e"
 }

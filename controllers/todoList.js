@@ -1,6 +1,15 @@
 const listRouter = require("express").Router();
 const todoTasks = require("../models/todo.js");
 const User = require("../models/user.js");
+const jwt = require("jsonwebtoken");
+
+const getTokenFrom = request => {
+  const authorization = request.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
+    return authorization.substring(7);
+  }
+  return null;
+};
 
 listRouter.get("/", async (request, response) => {
   const todos = await todoTasks
@@ -31,19 +40,22 @@ listRouter.post("/", async (request, response, next) => {
       error: "missing title or description"
     });
   }
-
-  const user = await User.findById(body.userId);
-
   
+  const token = getTokenFrom(request)
+
+  try {
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    const user = await User.findById(body.userId);
+
     const todo = new todoTasks({
       title: body.title,
       description: body.description,
       completed: body.completed || false,
       user: user._id
     });
-  
-
-  try {
     const savedTodo = await todo.save();
     user.todos = user.todos.concat(savedTodo._id);
 
@@ -60,8 +72,13 @@ listRouter.post("/", async (request, response, next) => {
 
 listRouter.delete("/:id", async (request, response, next) => {
   try {
-    const deletedTask = await todoTasks.findByIdAndRemove(request.params.id);
-    response.json(deletedTask.toJSON());
+    if(!request.token || !request.token.id) {
+      return response.status(401).json({ error: 'token missing or invalid' })
+    }
+    const user = await User.findOne({ username: request.token.username })
+    
+
+    const deletedTask = await todoTasks.findOneAndRemove(request.params.id);
     response.status(204).end();
   } catch (exception) {
     next(exception);

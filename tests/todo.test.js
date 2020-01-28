@@ -98,7 +98,7 @@ describe("saving a todo", () => {
   describe("mark as complete a todo", () => {
     test("todo is marked as completed", async () => {
       const todos = await todosinDB()
-      const todoId = todos.map(todo => todo._id)
+      const todoId = todos.map(todo => todo.id)
 
       const completedInDb = todoId.completed
       const completedUpdate = { completed: !completedInDb };
@@ -113,13 +113,11 @@ describe("saving a todo", () => {
     test("deleting a todo works accurately", async () => {
       const todos = await todosinDB()
       const todoToDelete = todos.map(todo => todo.id)
-      console.log(todoToDelete)
-      const deletedTodo = await api.delete(`/api/todos/${todoToDelete[0]}`);
+      const deletedTodo = await api.delete(`/api/todos/${todoToDelete[0]}`).expect(204)
       
       const newTodos = await todosinDB()
-      expect(newTodos.length).toBe(todos.length - 1);
-      
       const contents = newTodos.map(todo => todo.title)
+      
       expect(contents).not.toContain(deletedTodo.title)
     });
   });
