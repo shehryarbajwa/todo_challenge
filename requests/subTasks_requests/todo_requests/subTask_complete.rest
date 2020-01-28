@@ -1,0 +1,6 @@
+PUT http://localhost:3001/api/subtasks/5e2ffdd56b5eb6666f38d7e2/completed 
+Content-Type: application/json
+
+{
+    "completed": true
+}

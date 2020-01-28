@@ -1,0 +1,6 @@
+PUT http://localhost:3001/api/todos/5e2fe8a54d7cd443c1199339/completed
+Content-Type: application/json
+
+{
+    "completed": true
+}

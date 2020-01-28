@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/subtasks 
+Content-Type: application/json
+
+{
+    "title":"Sub-Task -- 2",
+    "description":"Study JavaScript at 10.30 am",
+    "completed": false,
+    "todoId": "5e3005df9178646f7ee0a498",
+    "userId": "5e300251b6b22b6bde1a00a0"
+}

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const todoSchema = new mongoose.Schema({
+const subTasksSchema = new mongoose.Schema({
   title: {
     type: String,
     maxlength: 100,
@@ -11,18 +11,17 @@ const todoSchema = new mongoose.Schema({
     type: String
   },
   completed: Boolean,
+  todos: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Todos'
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  },
-  subTasks: [
-      {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Subtasks'
-      }]
+  }
 });
 
-todoSchema.set("toJSON", {
+subTasksSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -30,6 +29,6 @@ todoSchema.set("toJSON", {
   }
 });
 
-const todo = mongoose.model('Todos', todoSchema);
+const subTasks = mongoose.model('Subtasks', subTasksSchema);
 
-module.exports = todo;
+module.exports = subTasks;

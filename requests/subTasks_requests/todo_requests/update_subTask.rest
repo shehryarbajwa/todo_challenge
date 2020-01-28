@@ -1,0 +1,9 @@
+PUT http://localhost:3001/api/subtasks
+Content-Type: application/json
+
+{
+    "title":"First important task",
+    "description":"Wake up early",
+    "completed": false,
+    "userId": "5e2fe5be9225dc3dabccd33a"
+}

@@ -3,7 +3,10 @@ const todoTasks = require("../models/todo.js");
 const User = require("../models/user.js");
 
 listRouter.get("/", async (request, response) => {
-  const todos = await todoTasks.find({}).populate('user', {username: 1, name: 1});
+  const todos = await todoTasks
+    .find({})
+    .populate("user", { username: 1, name: 1 })
+    .populate("subTasks", { title: 1, description: 1})
   response.json(todos.map(todo => todo.toJSON()));
 });
 
@@ -34,9 +37,10 @@ listRouter.post("/", async (request, response, next) => {
 
   try {
     const savedTodo = await todo.save();
-    user.todos = user.todos.concat(savedTodo._id)
-    console.log('Saving user to usersdb')
-    await user.save()
+    user.todos = user.todos.concat(savedTodo._id);
+
+    await user.save();
+
     response.json(savedTodo.toJSON());
   } catch (exception) {
     next(exception);
@@ -45,7 +49,8 @@ listRouter.post("/", async (request, response, next) => {
 
 listRouter.delete("/:id", async (request, response, next) => {
   try {
-    await todoTasks.findByIdAndRemove(request.params.id);
+    const deletedTask = await todoTasks.findByIdAndRemove(request.params.id);
+    response.json(deletedTask.toJSON());
     response.status(204).end();
   } catch (exception) {
     next(exception);
@@ -64,6 +69,24 @@ listRouter.put("/:id", async (request, response, next) => {
   try {
     const todo = await todoTasks.findByIdAndUpdate(request.params.id, new_todo);
     response.json(todo.toJSON());
+  } catch (exception) {
+    next(exception);
+  }
+});
+
+listRouter.put("/:id/completed", async (request, response, next) => {
+  const body = request.body;
+  const completed_status = body.completed;
+  const todoTask = await todoTasks.findById(request.params.id);
+  todoTask.completed = completed_status
+
+
+  try {
+    const updateTodo = await todoTasks.findByIdAndUpdate(
+      request.params.id,
+      todoTask
+    );
+    response.json(updateTodo.toJSON())
   } catch (exception) {
     next(exception);
   }
