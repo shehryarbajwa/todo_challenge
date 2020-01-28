@@ -19,7 +19,8 @@ const todoSchema = new mongoose.Schema({
       {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Subtasks'
-      }]
+      }
+    ]
 });
 
 todoSchema.set("toJSON", {
@@ -30,6 +31,6 @@ todoSchema.set("toJSON", {
   }
 });
 
-const todo = mongoose.model('Todos', todoSchema);
+const Todo = mongoose.model('Todos', todoSchema);
 
-module.exports = todo;
+module.exports = Todo;

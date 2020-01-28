@@ -2,29 +2,17 @@ const mongoose = require("mongoose");
 const supertest = require("supertest");
 const app = require("../app");
 const User = require("../models/user");
-
+const { initalUsers, usersInDb } = require("./test_helper")
 const api = supertest(app);
 
-const initalUsers = [
-  {
-    name: "Test Name",
-    username: "testuser",
-    passwordHash: "password"
-  },
-  {
-    name: "Test Name 2",
-    username: "testuser2",
-    passwordHash: "password"
-  }
-];
-
 beforeEach(async () => {
-  await User.deleteMany({});
+    await User.deleteMany({});
 
-  const usersArray = initalUsers.map(user => new User(user));
-  const promiseArray = usersArray.map(user => user.save());
-
-  await Promise.all(promiseArray);
+    let todoObject = new User(initalUsers[0]);
+    await todoObject.save();
+  
+    todoObject = new User(initalUsers[1]);
+    await todoObject.save();
 });
 
 describe("retriving users", () => {
@@ -43,20 +31,21 @@ describe("retriving users", () => {
 });
 
 describe("creating users", () => {
-  test("works correctly", async () => {
+  test("creating users works correctly", async () => {
     const userToCreate = {
-      name: "New User",
-      username: "test",
-      password: "12345"
+      name: "John Dior",
+      username: "userName",
+      password: "password",
+      _id: 3
     };
 
     const createdUser = await api.post("/api/users").send(userToCreate);
+    
 
-    expect(createdUser.body.user).toBe(userToCreate.user);
     expect(createdUser.body.username).toBe(userToCreate.username);
   });
 
-  test("with a username lower than 5 character server sents 400 and an error", async () => {
+  test("username length less than 5 gets a 400 error", async () => {
     const userWithShortUserName = {
       username: "12",
       password: "12345"
@@ -67,22 +56,21 @@ describe("creating users", () => {
       .send(userWithShortUserName);
 
     expect(apiResponse.status).toBe(400);
-    expect(apiResponse.body).toHaveProperty("error");
   });
 
-  test("with a password lower than 5 character server sents 400 and an error", async () => {
-    const userWithShortPassword = {
-      username: "username",
-      password: "12"
-    };
+  test("password length less than 5 characters gets a 400 error", async () => {
+    const userWithShortUserName = {
+        username: "Johndoer",
+        password: "abcd"
+      };
+  
+      const apiResponse = await api
+        .post("/api/users")
+        .send(userWithShortUserName);
+  
+      expect(apiResponse.status).toBe(400);
+  })
 
-    const apiResponse = await api
-      .post("/api/users")
-      .send(userWithShortPassword);
-
-    expect(apiResponse.status).toBe(400);
-    expect(apiResponse.body).toHaveProperty("error");
-  });
 });
 
 afterAll(() => {

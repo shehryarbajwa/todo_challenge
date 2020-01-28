@@ -6,7 +6,7 @@ listRouter.get("/", async (request, response) => {
   const todos = await todoTasks
     .find({})
     .populate("user", { username: 1, name: 1 })
-    .populate("subTasks", { title: 1, description: 1})
+    .populate("subTasks", { title: 1, description: 1 });
   response.json(todos.map(todo => todo.toJSON()));
 });
 
@@ -26,22 +26,33 @@ listRouter.get("/:id", async (request, response, next) => {
 listRouter.post("/", async (request, response, next) => {
   const body = request.body;
 
+  if (!body.title || !body.description) {
+    response.status(400).json({
+      error: "missing title or description"
+    });
+  }
+
   const user = await User.findById(body.userId);
 
-  const todo = new todoTasks({
-    title: body.title,
-    description: body.description,
-    completed: body.completed || false,
-    user: user._id
-  });
+  
+    const todo = new todoTasks({
+      title: body.title,
+      description: body.description,
+      completed: body.completed || false,
+      user: user._id
+    });
+  
 
   try {
     const savedTodo = await todo.save();
     user.todos = user.todos.concat(savedTodo._id);
 
     await user.save();
-
-    response.json(savedTodo.toJSON());
+    const result = await todoTasks.findById(savedTodo._id).populate("user", {
+      username: 1,
+      name: 1
+    });
+    response.json(result.toJSON());
   } catch (exception) {
     next(exception);
   }
@@ -78,15 +89,14 @@ listRouter.put("/:id/completed", async (request, response, next) => {
   const body = request.body;
   const completed_status = body.completed;
   const todoTask = await todoTasks.findById(request.params.id);
-  todoTask.completed = completed_status
-
+  todoTask.completed = completed_status;
 
   try {
     const updateTodo = await todoTasks.findByIdAndUpdate(
       request.params.id,
       todoTask
     );
-    response.json(updateTodo.toJSON())
+    response.json(updateTodo.toJSON());
   } catch (exception) {
     next(exception);
   }

@@ -2,8 +2,7 @@ POST http://localhost:3001/api/todos
 Content-Type: application/json
 
 {
-    "title":"Task -- 1",
-    "description":"Wake up early",
-    "completed": false,
-    "userId": "5e300251b6b22b6bde1a00a0"
+    "title":"Task -- 3",
+    "description":"Drop Aimee to Work",
+    "completed": false
 }

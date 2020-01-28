@@ -6,8 +6,8 @@ const User = require("../models/user.js");
 taskRouter.get("/", async (request, response) => {
   const subTodos = await subTasks
     .find({})
-    .populate("user", {username: 1})
-    .populate("todos", { title: 1, description: 1});
+    .populate("user", { username: 1 })
+    .populate("todos", { title: 1, description: 1 });
 
   response.json(subTodos.map(todo => todo.toJSON()));
 });
@@ -28,8 +28,18 @@ taskRouter.get("/:id", async (request, response, next) => {
 taskRouter.post("/", async (request, response, next) => {
   const body = request.body;
 
+  if (!body.title || !body.description) {
+    response.status(400).json({
+      error: "missing title or description"
+    });
+  }
+
   const parentTodo = await Todo.findById(body.todoId);
   const user = await User.findById(body.userId);
+
+  if (user_id === undefined){
+    user_id = '5e307883d9d07b0fed79c846'
+  }
 
   const subTodo = new subTasks({
     title: body.title,
@@ -44,7 +54,6 @@ taskRouter.post("/", async (request, response, next) => {
     parentTodo.subTasks = parentTodo.subTasks.concat(savedSubTask._id);
     await parentTodo.save();
     response.json(savedSubTask.toJSON());
-
   } catch (exception) {
     next(exception);
   }
@@ -81,15 +90,14 @@ taskRouter.put("/:id/completed", async (request, response, next) => {
   const body = request.body;
   const completed_status = body.completed;
   const subTodoTask = await subTasks.findById(request.params.id);
-  subTodoTask.completed = completed_status
-
+  subTodoTask.completed = completed_status;
 
   try {
     const updateSubTask = await subTasks.findByIdAndUpdate(
       request.params.id,
       subTodoTask
     );
-    response.json(updateSubTask.toJSON())
+    response.json(updateSubTask.toJSON());
   } catch (exception) {
     next(exception);
   }
