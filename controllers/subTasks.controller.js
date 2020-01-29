@@ -3,16 +3,27 @@ const subTasks = require("../models/subTasks.js");
 const Todo = require("../models/todo.js");
 const User = require("../models/user.js");
 
-taskRouter.get("/", async (request, response) => {
-  console.log(request.token);
-  const subTodos = await subTasks
-    .find({})
-    .populate("user", { username: 1 })
-    .populate("todos", { title: 1, description: 1 });
+const getTokenFrom = request => {
+  const authorization = request.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
+    return authorization.substring(7);
+  }
+  return null;
+};
 
-  response.json(subTodos.map(todo => todo.toJSON()));
-});
+//Admin Route
+//Requires admin permission
+// taskRouter.get("/", async (request, response) => {
+//   const subTodos = await subTasks
+//     .find({})
+//     .populate("user", { username: 1 })
+//     .populate("todos", { title: 1, description: 1 });
 
+//   response.json(subTodos.map(todo => todo.toJSON()));
+// });
+
+
+//Get currentUser's active SubTodo tasks
 taskRouter.get("/:id", async (request, response, next) => {
   try {
     const subTodo = await subTasks.findById(request.params.id);
@@ -26,6 +37,8 @@ taskRouter.get("/:id", async (request, response, next) => {
   }
 });
 
+//Creating a new sub-todo by currentUser
+//Requires active token
 taskRouter.post("/", async (request, response, next) => {
   const body = request.body;
 
@@ -34,6 +47,7 @@ taskRouter.post("/", async (request, response, next) => {
       error: "missing title or description"
     });
   }
+  const token = getTokenFrom(request);
 
   const parentTodo = await Todo.findById(body.todoId);
   const user = await User.findById(body.userId);
@@ -47,6 +61,10 @@ taskRouter.post("/", async (request, response, next) => {
   });
 
   try {
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
     const savedSubTask = await subTodo.save();
     parentTodo.subTasks = parentTodo.subTasks.concat(savedSubTask._id);
     await parentTodo.save();
@@ -56,8 +74,14 @@ taskRouter.post("/", async (request, response, next) => {
   }
 });
 
+
 taskRouter.delete("/:id", async (request, response, next) => {
+  const token = getTokenFrom(request);
   try {
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
     const deletedTask = await subTasks.findByIdAndRemove(request.params.id);
     response.json(deletedTask.toJSON());
     response.status(204).end();
@@ -67,6 +91,7 @@ taskRouter.delete("/:id", async (request, response, next) => {
 });
 
 taskRouter.put("/:id", async (request, response, next) => {
+  const token = getTokenFrom(request);
   const body = request.body;
 
   const new_todo = {
@@ -76,6 +101,10 @@ taskRouter.put("/:id", async (request, response, next) => {
   };
 
   try {
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
     const todo = await subTasks.findByIdAndUpdate(request.params.id, new_todo);
     response.json(todo.toJSON());
   } catch (exception) {
@@ -84,12 +113,17 @@ taskRouter.put("/:id", async (request, response, next) => {
 });
 
 taskRouter.put("/:id/completed", async (request, response, next) => {
+  const token = getTokenFrom(request);
   const body = request.body;
   const completed_status = body.completed;
   const subTodoTask = await subTasks.findById(request.params.id);
   subTodoTask.completed = completed_status;
 
   try {
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
     const updateSubTask = await subTasks.findByIdAndUpdate(
       request.params.id,
       subTodoTask
