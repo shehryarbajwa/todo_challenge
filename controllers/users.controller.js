@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
 
+//New user signup
 usersRouter.post("/", async (request, response, next) => {
   try {
     const body = request.body;
@@ -35,11 +36,11 @@ usersRouter.post("/", async (request, response, next) => {
     next(exception);
   }
 });
-
-usersRouter.get("/", async (request, response, next) => {
+//For the currentUser who is loggedIn after jwt authorization
+usersRouter.get("/:id", async (request, response, next) => {
     try{
-        const users = await User.find({}).populate('todos', { title: 1, description: 1 });
-        response.json(users.map(user => user.toJSON()));
+        const user = await User.findById(request.params.id).populate('todos', { title: 1, description: 1 });
+        response.json(user.toJSON());
     } catch (exception) {
         next(exception);
     }

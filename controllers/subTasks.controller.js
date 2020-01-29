@@ -4,6 +4,7 @@ const Todo = require("../models/todo.js");
 const User = require("../models/user.js");
 
 taskRouter.get("/", async (request, response) => {
+  console.log(request.token);
   const subTodos = await subTasks
     .find({})
     .populate("user", { username: 1 })
@@ -36,10 +37,6 @@ taskRouter.post("/", async (request, response, next) => {
 
   const parentTodo = await Todo.findById(body.todoId);
   const user = await User.findById(body.userId);
-
-  if (user_id === undefined){
-    user_id = '5e307883d9d07b0fed79c846'
-  }
 
   const subTodo = new subTasks({
     title: body.title,
