@@ -2,6 +2,7 @@ const taskRouter = require("express").Router();
 const subTasks = require("../models/subTasks.js");
 const Todo = require("../models/todo.js");
 const User = require("../models/user.js");
+const jwt = require("jsonwebtoken");
 
 const getTokenFrom = request => {
   const authorization = request.get("authorization");
@@ -13,14 +14,14 @@ const getTokenFrom = request => {
 
 //Admin Route
 //Requires admin permission
-// taskRouter.get("/", async (request, response) => {
-//   const subTodos = await subTasks
-//     .find({})
-//     .populate("user", { username: 1 })
-//     .populate("todos", { title: 1, description: 1 });
+taskRouter.get("/", async (request, response) => {
+  const subTodos = await subTasks
+    .find({})
+    .populate("user", { username: 1 })
+    .populate("todos", { title: 1, description: 1 });
 
-//   response.json(subTodos.map(todo => todo.toJSON()));
-// });
+  response.json(subTodos.map(todo => todo.toJSON()));
+});
 
 
 //Get currentUser's active SubTodo tasks
@@ -106,7 +107,9 @@ taskRouter.put("/:id", async (request, response, next) => {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     const todo = await subTasks.findByIdAndUpdate(request.params.id, new_todo);
-    response.json(todo.toJSON());
+    const updatedTodo = await subTasks.findById(request.params.id)
+
+    response.json(updatedTodo.toJSON());
   } catch (exception) {
     next(exception);
   }
@@ -128,7 +131,9 @@ taskRouter.put("/:id/completed", async (request, response, next) => {
       request.params.id,
       subTodoTask
     );
-    response.json(updateSubTask.toJSON());
+    const updatedSubtask = await subTasks.findById(request.params.id)
+
+    response.json(updatedSubtask.toJSON());
   } catch (exception) {
     next(exception);
   }

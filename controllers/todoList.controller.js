@@ -12,15 +12,15 @@ const getTokenFrom = request => {
 };
 
 //Admin Route
-// todoListRouter.get("/", async (request, response) => {
-//   const todos = await todoTasks
-//     .find({})
-//     .populate("user", { username: 1, name: 1 })
-//     .populate("subTasks", { title: 1, description: 1 });
-//   response.json(todos.map(todo => todo.toJSON()));
-// });
+todoListRouter.get("/", async (request, response) => {
+  const todos = await todoTasks
+    .find({})
+    .populate("user", { username: 1, name: 1 })
+    .populate("subTasks", { title: 1, description: 1 });
+  response.json(todos.map(todo => todo.toJSON()));
+});
 
-//Get currentUser's active Todo tasks
+//Get specific Todo task
 todoListRouter.get("/:id", async (request, response, next) => {
   try {
     const todo = await todoTasks.findById(request.params.id);
@@ -110,7 +110,8 @@ todoListRouter.put("/:id", async (request, response, next) => {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     const todo = await todoTasks.findByIdAndUpdate(request.params.id, new_todo);
-    response.json(todo.toJSON());
+    const updatedTodo = await todoTasks.findById(request.params.id)
+    response.json(updatedTodo.toJSON());
   } catch (exception) {
     next(exception);
   }
@@ -122,7 +123,8 @@ todoListRouter.put("/:id/completed", async (request, response, next) => {
   const body = request.body;
   const completed_status = body.completed;
   const todoTask = await todoTasks.findById(request.params.id);
-  todoTask.completed = completed_status;
+  todoTask.completed = completed_status
+  
   const token = getTokenFrom(request);
 
   try {
@@ -134,7 +136,8 @@ todoListRouter.put("/:id/completed", async (request, response, next) => {
       request.params.id,
       todoTask
     );
-    response.json(todoTask.toJSON());
+    const updatedTodo = await todoTasks.findById(request.params.id)
+    response.json(updatedTodo.toJSON());
   } catch (exception) {
     next(exception);
   }
