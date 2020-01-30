@@ -1,8 +1,9 @@
-POST http://localhost:3001/api/users 
+POST http://localhost:3001/api/users/signup
 Content-Type: application/json
 
 {
-    "username":"Test123",
-    "name":"test",
-    "password": "test123"
+    "name":"swozniak",
+    "username":"swozniak",
+    "email":"steve.wozniak@apple.com",
+    "password":"steve123"
 }

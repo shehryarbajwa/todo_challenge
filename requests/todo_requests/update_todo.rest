@@ -1,9 +1,10 @@
-PUT http://localhost:3001/api/todos/5e2fe8a54d7cd443c1199339
+PUT http://localhost:3001/api/todos/5e32349539cc8102198b23f8
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTMyMzQ5NTM5Y2M4MTAyMTk4YjIzZjgiLCJ1c2VybmFtZSI6InNqdW9icyIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNTgwMzU4NzU5fQ.dNrQFbGNJmpcUcKC0BubfOPor_qvc9F2pWl3TQjD_i8
 
 {
-    "title":"First important task",
+    "title":"Change sJuobs task",
     "description":"Wake up early",
     "completed": false,
-    "userId": "5e2fe5be9225dc3dabccd33a"
+    "userId": "5e32349539cc8102198b23f8"
 }

@@ -1,9 +1,12 @@
 const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
+const {AdminRole, UserRole} = require("../accessControl/tokenHelper/role.js")
+const authorize = require("../accessControl/tokenHelper/authorize")
+const {getAllUsers, getUsersById} = require("../controllers/controller_helpers/users.service.js")
 
-//New user signup
-usersRouter.post("/", async (request, response, next) => {
+//New user signup, Public Route
+usersRouter.post("/signup", async (request, response, next) => {
   try {
     const body = request.body;
 
@@ -23,11 +26,21 @@ usersRouter.post("/", async (request, response, next) => {
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
+    const emailValidate = body.email.split("@")[1]
+
     const user = new User({
       username: body.username,
       name: body.name,
-      passwordHash
+      passwordHash,
+      email: body.email
     });
+
+    if (emailValidate == 'commercebear.com'){
+      user.role = AdminRole
+    } else{
+      user.role = UserRole
+    }
+
 
     const savedUser = await user.save();
 
@@ -36,14 +49,13 @@ usersRouter.post("/", async (request, response, next) => {
     next(exception);
   }
 });
+
+
+//Admin Route
+usersRouter.get("/admin", authorize(AdminRole), getAllUsers)
+
 //For the currentUser who is loggedIn after jwt authorization
-usersRouter.get("/:id", async (request, response, next) => {
-    try{
-        const user = await User.findById(request.params.id).populate('todos', { title: 1, description: 1 });
-        response.json(user.toJSON());
-    } catch (exception) {
-        next(exception);
-    }
-})
+usersRouter.get("/:id", authorize(), getUsersById)
+
 
 module.exports = usersRouter;

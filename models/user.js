@@ -9,15 +9,27 @@ const userSchema = new mongoose.Schema({
     unique: true
   },
   name: String,
+  email: {
+    type: String,
+    required: true
+  },
   passwordHash: {
       type: String,
       required: true
   },
+  role: String,
   todos: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Todos",
-      default: []
+      default: [],
+      subTasks: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Subtasks",
+          default: []
+        }
+      ]
     }
   ]
 });

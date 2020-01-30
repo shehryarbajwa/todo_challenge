@@ -1,1 +1,2 @@
-DELETE http://localhost:3001/api/todos/5e2fe84fb11c5d42ab9f75ea
+DELETE http://localhost:3001/api/todos/5e325ce249eb920f7ab28565
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTMyMjcwZjU2YmMwNmZkMzE2ZWQzNjQiLCJ1c2VybmFtZSI6InNqb2JzIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNTgwMzU4NzQwfQ.hp15uCtCXckKrBLnix-I1FZWmqJ9P3m72pSj4XO4oiY

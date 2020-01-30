@@ -1,10 +1,11 @@
-POST http://localhost:3001/api/subtasks 
-Content-Type: application/json
+POST http://localhost:3001/api/subtasks
 
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTMyNWMyZTQ5ZWI5MjBmN2FiMjg1NjQiLCJ1c2VybmFtZSI6InN3b3puaWFrIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODAzNTg3MDl9.dxkD_h-RE7idpa_XIshyPhsdfHaFiM16PVXxblXQV9E
 {
-    "title":"Sub-Task -- 2",
+    "title":"Creating new Wozniak -Task -- 2",
     "description":"Pick up eggs on the drive back",
     "completed": false,
-    "todoId": "5e3040db5fbf0da2b390ecc9",
-    "userId": "5e3040c35fbf0da2b390ecc8"
+    "todoId": "5e325ce249eb920f7ab28565",
+    "userId": "5e325c2e49eb920f7ab28564"
 }
