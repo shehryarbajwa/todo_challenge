@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const User = require("../../models/user.js");
-const Todo = require;
 const bcrypt = require("bcrypt");
 
 const authenticate = async (request, response) => {
@@ -20,8 +19,7 @@ const authenticate = async (request, response) => {
   const userForToken = {
     username: user.username,
     id: user._id,
-    role: user.role,
-    todoAuth: user._id
+    role: user.role
   }
 
   const token = jwt.sign(userForToken, process.env.SECRET)

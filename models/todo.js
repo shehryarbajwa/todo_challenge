@@ -16,10 +16,10 @@ const todoSchema = new mongoose.Schema({
     ref: "User"
   }
   ],
-  subTasks: [
+  subtodos: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Subtasks"
+      ref: "subtodos"
     }
   ]
 });

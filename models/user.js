@@ -25,14 +25,15 @@ const userSchema = new mongoose.Schema({
       default: []
     }
   ],
-  subTasks: [
+  subtodos: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "SubTasks",
+      ref: "subtodos",
       default: []
     }
   ]
 });
+
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()

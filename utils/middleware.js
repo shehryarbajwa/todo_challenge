@@ -26,7 +26,7 @@ const requestLogger = (request, response, next) => {
         error: 'invalid token'
       })
     }
-  
+    console.log(error.stack);
     logger.error(error.message)
   
     next(error)

@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "name":"steveJobs",
-    "username":"sjccbs",
+    "username":"sjobs",
     "email":"steve.jobs@apple.com",
     "password":"steve123"
 }

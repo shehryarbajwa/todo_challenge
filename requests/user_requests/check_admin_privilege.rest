@@ -1,2 +1,0 @@
-GET http://localhost:3001/api/users/admin
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTMyMzQ5NTM5Y2M4MTAyMTk4YjIzZjgiLCJ1c2VybmFtZSI6InNqdW9icyIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNTgwMzU2NTIwfQ.hMbOvVuSbuN0hoxmmPV8n-MtDNGYRJzRxUIoUEncmbw

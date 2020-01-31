@@ -1,9 +1,0 @@
-POST http://localhost:3001/api/todos
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzOGEyYjg4YTcyZjBlNmFjMTcwYjIiLCJyb2xlIjoiVXNlciIsInRvZG9BdXRoIjoiNWUzMzhhMmI4OGE3MmYwZTZhYzE3MGIyIiwiaWF0IjoxNTgwNDM3NDExfQ.1bg386lAe0Yq5uC6D8Ljyz3npLWvPH-cGr9uRojZlKg
-
-{  
-    "title":"Steve Jobs's Second Task",
-    "description":"Do snow removal",
-    "completed": false
-}

@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/subtasks
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN3b3puaWFrIiwiaWQiOiI1ZTM0MmQ0MWQwNTE4NWQyM2E0YWM3NWYiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ3NzgwMH0.aELt0tfyRa8qzenEHAsvSDpRz6F0wzejrhbdeX-kH7M
+
+{
+    "title":"Creating new swoz -SubTask -- 3",
+    "description":"Pick up eggs on the drive back",
+    "completed": false,
+    "todos":"5e342e32d05185d23a4ac761"
+}

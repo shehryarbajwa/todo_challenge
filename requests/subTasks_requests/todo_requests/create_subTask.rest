@@ -1,9 +1,0 @@
-POST http://localhost:3001/api/subtasks
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzNGQ4N2Y4NmVlNDRhN2MzMDAwNjYiLCJyb2xlIjoiVXNlciIsInRvZG9BdXRoIjoiNWUzMzRkODdmODZlZTQ0YTdjMzAwMDY2IiwiaWF0IjoxNTgwNDIwNTAwfQ.TQB2Q0ofczM6Jnj_-N5W0j7WspXaophtSpnYvsqN7h4
-
-{
-    "title":"Creating new Sjobs -SubTask -- 1",
-    "description":"Pick up eggs on the drive back",
-    "completed": false
-}

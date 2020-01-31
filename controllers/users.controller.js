@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
-const {AdminRole, UserRole} = require("../accessControl/tokenHelper/role.js")
+const {Admin, UserRole} = require("../accessControl/tokenHelper/role.js")
 const {authorizeTodos} = require("../accessControl/tokenHelper/authorize")
 const {getAllUsers, getUsersById} = require("../controllers/controller_helpers/users.service.js")
 
@@ -36,7 +36,7 @@ usersRouter.post("/signup", async (request, response, next) => {
     });
 
     if (emailValidate == 'commercebear.com'){
-      user.role = AdminRole
+      user.role = Admin
     } else{
       user.role = UserRole
     }
@@ -52,10 +52,10 @@ usersRouter.post("/signup", async (request, response, next) => {
 
 
 //Admin Route
-usersRouter.get("/admin", authorizeTodos(AdminRole), getAllUsers)
+usersRouter.get("/admin", authorizeTodos([Admin]), getAllUsers)
 
 //For the currentUser who is loggedIn after jwt authorization
-usersRouter.get("/:id", authorizeTodos(), getUsersById)
+usersRouter.get("/:id", authorizeTodos([]), getUsersById)
 
 
 module.exports = usersRouter;

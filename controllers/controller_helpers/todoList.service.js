@@ -1,62 +1,28 @@
 const Todo = require("../../models/todo");
 const User = require("../../models/user.js");
-const jwt = require("jsonwebtoken");
 
-const getTokenFrom = request => {
-  const authorization = request.get("authorization");
-  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
-    return authorization.substring(7);
-  }
-  return null;
-};
-
-const getAllTodos = async (request, response, next) => {
-  const token = getTokenFrom(request);
-  try {
-    const decodedToken = jwt.verify(token, process.env.SECRET);
-    if (!token || !decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
-
-    const todos = await Todo.find({})
-      .populate("user", { username: 1, name: 1 })
-      .populate("subTasks", { title: 1, description: 1 });
-
-    return response.json(todos.map(todo => todo.toJSON()));
-  } catch (exception) {
-    next(exception);
-  }
-};
 
 const getSpecificTodo = async (request, response, next) => {
-  const token = getTokenFrom(request);
   try {
-    const decodedToken = jwt.verify(token, process.env.SECRET);
-    const todo = await Todo.findById(request.params.id)
+    const todo = await Todo.findById(request.params.id);
 
-    todoId = todo.user.toString()
+      const todoById = await Todo.findById(request.params.id)
+        .populate("user", { username: 1, name: 1 })
+        .populate("subTasks", { title: 1, description: 1 });
 
-    if (!token || todoId !== decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
+      if (todoById) {
+        return response.json(todoById);
+      } else {
+        return response.status(404).end();
+      }
     }
-
-    const finalResult = await Todo.find({})
-    .populate("user", { username: 1, name: 1 })
-    .populate("subTasks", { title: 1, description: 1 })
-
-    if (finalResult) {
-      return response.json(finalResult);
-    } else {
-      return response.status(404).end();
-    }
-  } catch (exception) {
+   catch (exception) {
     next(exception);
   }
 };
 
 const postTodo = async (request, response, next) => {
   const body = request.body;
-  const token = getTokenFrom(request);
 
   if (!body.title || !body.description) {
     return response.status(400).json({
@@ -65,12 +31,9 @@ const postTodo = async (request, response, next) => {
   }
 
   try {
-    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const userId = request.decrypted.id;
 
-    if (!token || !decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
-    const user = await User.findById(decodedToken.id);
+    const user = await User.findById(userId);
 
     const todo = new Todo({
       title: body.title,
@@ -94,15 +57,7 @@ const postTodo = async (request, response, next) => {
 };
 
 const deleteTodo = async (request, response, next) => {
-  const token = getTokenFrom(request);
   try {
-    const toDeleteTask = await Todo.findById(request.params.id);
-    const deleteTodoUser = toDeleteTask.user.toString();
-    const decodedToken = jwt.verify(token, process.env.SECRET);
-
-    if (!token || decodedToken.id !== deleteTodoUser) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
     const deletedTask = await Todo.findOneAndRemove(request.params.id);
 
     if (deletedTask) {
@@ -110,7 +65,7 @@ const deleteTodo = async (request, response, next) => {
         .status(204)
         .send({ message: "todo deleted successfully" });
     } else {
-      return response.status(400).json({
+      return response.status(404).json({
         error: `No Todo with the following id: ${id}`
       });
     }
@@ -121,27 +76,17 @@ const deleteTodo = async (request, response, next) => {
 
 const updateTodo = async (request, response, next) => {
   const body = request.body;
-  const token = getTokenFrom(request);
 
   try {
     const updatedTodo = await Todo.findById(request.params.id);
 
-    const updatedTodoId = updatedTodo.user.toString();
-    const decodedToken = jwt.verify(token, process.env.SECRET);
-
-    if (updatedTodo.user.id === decodedToken.id) {
-      print("Successful");
-    }
-
-    if (!token || updatedTodoId !== decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
-
     const new_todo = {
       title: body.title,
       description: body.description,
-      completed: body.completed || false
+      completed: body.completed || false,
+      todoId: request.params.id
     };
+    
     const updateTodoComplete = await Todo.findByIdAndUpdate(
       request.params.id,
       new_todo
@@ -157,20 +102,13 @@ const updateTodo = async (request, response, next) => {
 };
 
 const markAsComplete = async (request, response, next) => {
-  const token = getTokenFrom(request);
   const body = request.body;
-  const completed_status = body.completed;
 
   try {
     const todoTask = await Todo.findById(request.params.id);
-    const todoTaskId = todoTask.user.toString()
-    const decodedToken = jwt.verify(token, process.env.SECRET);
-
-    if (!token || todoTaskId != decodedToken.id) {
-      return response.status(401).json({ error: "token missing or invalid" });
-    }
-
+    const completed_status = body.completed;
     todoTask.completed = completed_status;
+    
     const updateTodo = await Todo.findByIdAndUpdate(
       request.params.id,
       todoTask
@@ -186,7 +124,6 @@ const markAsComplete = async (request, response, next) => {
 };
 
 module.exports = {
-  getAllTodos,
   getSpecificTodo,
   postTodo,
   deleteTodo,

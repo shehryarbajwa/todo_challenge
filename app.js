@@ -3,10 +3,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
-const todoRouter = require('./controllers/todoList.controller')
-const taskRouter = require('./controllers/subTasks.controller')
-const usersRouter = require('./controllers/users.controller')
-const loginRouter = require('./controllers/login.controller')
 const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
 const logger = require('./utils/logger')
@@ -19,6 +15,13 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   .catch((error) => {
     logger.info('error connection to MongoDB:', error.message)
   })
+
+
+const todoRouter = require('./controllers/todoList.controller')
+const taskRouter = require('./controllers/subTasks.controller')
+const usersRouter = require('./controllers/users.controller')
+const loginRouter = require('./controllers/login.controller')
+
 
 app.use(cors())
 app.use(bodyParser.json())
