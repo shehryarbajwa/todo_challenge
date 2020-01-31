@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
 const {AdminRole, UserRole} = require("../accessControl/tokenHelper/role.js")
-const authorize = require("../accessControl/tokenHelper/authorize")
+const {authorizeTodos} = require("../accessControl/tokenHelper/authorize")
 const {getAllUsers, getUsersById} = require("../controllers/controller_helpers/users.service.js")
 
 //New user signup, Public Route
@@ -52,10 +52,10 @@ usersRouter.post("/signup", async (request, response, next) => {
 
 
 //Admin Route
-usersRouter.get("/admin", authorize(AdminRole), getAllUsers)
+usersRouter.get("/admin", authorizeTodos(AdminRole), getAllUsers)
 
 //For the currentUser who is loggedIn after jwt authorization
-usersRouter.get("/:id", authorize(), getUsersById)
+usersRouter.get("/:id", authorizeTodos(), getUsersById)
 
 
 module.exports = usersRouter;

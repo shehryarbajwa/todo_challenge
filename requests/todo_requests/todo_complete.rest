@@ -1,7 +1,7 @@
-PUT http://localhost:3001/api/todos/5e323af614876f04a88433e6/completed
+PUT http://localhost:3001/api/todos/5e338e706b9a98134ede42f8/completed
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTMyMjcwZjU2YmMwNmZkMzE2ZWQzNjQiLCJ1c2VybmFtZSI6InNqb2JzIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNTgwMzQ2MTkyfQ.km6-wsG9jan8dxHPLbsGksSJRtns-4yUA5RF2DcGi4A
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzOGEyYjg4YTcyZjBlNmFjMTcwYjIiLCJyb2xlIjoiVXNlciIsInRvZG9BdXRoIjoiNWUzMzhhMmI4OGE3MmYwZTZhYzE3MGIyIiwiaWF0IjoxNTgwNDM3OTU2fQ.Q5yCOIrIge_RGGyFhHcPtTN6zY6CDuO-rQdq1Ab-lZU
 
 {
-    "completed": false
+    "completed": true
 }

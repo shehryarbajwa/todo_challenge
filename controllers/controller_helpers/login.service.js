@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../../models/user.js");
+const Todo = require;
 const bcrypt = require("bcrypt");
 
 const authenticate = async (request, response) => {
@@ -9,24 +10,25 @@ const authenticate = async (request, response) => {
     user === null
       ? false
       : await bcrypt.compare(body.password, user.passwordHash);
-  if (user && passwordCorrect) {
-    const token = jwt.sign(
-      { sub: user._id, username: user.username, role: user.role },
-      process.env.SECRET
-    );
 
-    const checkTodoId = request.body.todoId ? request.body.todoId : undefined
-    return response.status(200).send({
-      token,
-      username: user.username,
-      name: user.name,
-      role: user.role,
-      id: user._id,
-      todoId: checkTodoId
+  if (!(user && passwordCorrect)) {
+    return response.status(401).json({
+      error: "invalid username or password"
     });
-  } else {
-    return response.status(401).json({ error: "invalid username or password" });
   }
-};
+
+  const userForToken = {
+    username: user.username,
+    id: user._id,
+    role: user.role,
+    todoAuth: user._id
+  }
+
+  const token = jwt.sign(userForToken, process.env.SECRET)
+
+  response
+  .status(200)
+  .send({ token, username: user.username, name: user.name})
+  };
 
 module.exports = authenticate;

@@ -1,6 +1,15 @@
 const subTasks = require("../../models/subtasks.js");
 const User = require("../../models/user.js");
 const Todo = require("../../models/todo.js");
+const jwt = require("jsonwebtoken");
+
+const getTokenFrom = request => {
+  const authorization = request.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
+    return authorization.substring(7);
+  }
+  return null;
+};
 
 const getAllSubTasks = async (request, response, next) => {
   try {
@@ -9,19 +18,29 @@ const getAllSubTasks = async (request, response, next) => {
       .populate("user", { username: 1, name: 1 })
       .populate("todos", { title: 1, description: 1 });
 
-    response.json(todos.map(subtasks => subtasks.toJSON()));
+    return response.json(todos.map(subtasks => subtasks.toJSON()));
   } catch (exception) {
     next(exception);
   }
 };
 
 const getSpecificSubTask = async (request, response, next) => {
+  const token = getTokenFrom(request);
   try {
-    const subTask = await subTasks.findById(request.params.id);
+    const subtasks = await subTasks.findById(request.params.id)
+      .populate("user", { username: 1, name: 1 })
+      .populate("todos", { title: 1, description: 1 });
+    
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const subTaskUserId = subTask.user.id
+
+    if (!token || subTaskUserId !== decodedToken.todoAuth) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
     if (subTask) {
-      response.json(subTask.toJSON());
+      return response.json(subTask.toJSON());
     } else {
-      response.status(404).end();
+      return response.status(404).end();
     }
   } catch (exception) {
     next(exception);
@@ -37,26 +56,40 @@ const postSubTask = async (request, response, next) => {
     });
   }
 
+  const token = getTokenFrom(request);
+
   try {
-    const user = await User.findById(body.userId);
-    const todo = await Todo.findById(body.todoId);
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const user = await User.findById(decodedToken.todoAuth);
+    console.log(user);
+    const todoId = user.todos.id
+    console.log(user.todos)
+    const userId = user.id.toString()
+    const authId = userId
+
+    if (!token || authId !== decodedToken.todoAuth) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
 
     const subtask = new subTasks({
       title: body.title,
       description: body.description,
       completed: body.completed || false,
-      todoId: todo._id,
-      user: user._id
+      todoId: todoId,
+      userId: userId
     });
+
     const savedSubTodo = await subtask.save();
-    user.todos = user.todos.concat(savedSubTodo._id);
+    subTasks.user = subTasks.user.concat(savedSubTodo.user.id)
+    user.subTasks = user.subTasks.concat(savedSubTodo.id);
 
     await user.save();
-    const result = await subTasks.findById(savedSubTodo._id).populate("user", {
-      username: 1,
-      name: 1
-    });
-    response.json(result.toJSON());
+    const result = await subTasks
+      .findById(savedSubTodo.id)
+      .populate("todos", { title: 1})
+      .populate("user", { username: 1});
+
+    return response.json(result.toJSON());
   } catch (exception) {
     next(exception);
   }
@@ -64,16 +97,37 @@ const postSubTask = async (request, response, next) => {
 
 const deleteSubTask = async (request, response, next) => {
   try {
-    const deletedSubTask = await subTasks.findOneAndRemove(request.params.id);
-    response.status(204).send({ message: "todo deleted successfully" });
+    const toDeleteSubTask = await subTasks.findById(request.params.id);
+    const deleteTodoUser = toDeleteSubTask.user.toJSON();
+
+    if (!token || deleteTodoUser !== decodedToken.todoAuth) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+
+    const deletedSubTask = await Todo.findOneAndRemove(request.params.id);
+
+    if (deletedSubTask) {
+      return response
+        .status(204)
+        .send({ message: "SubTask deleted successfully" });
+    } else {
+      return response.status(400).json({
+        error: `No SubTask with the following id: ${id}`
+      });
+    }
   } catch (exception) {
     next(exception);
   }
 };
 
 const updatedSubTask = async (request, response, next) => {
+  const token = getTokenFrom(request);
+  
   try {
     const body = request.body;
+    const toUpdateSubTask = await SubTask.findById(request.params.id);
+    const updatedSubTaskId = toUpdateSubTask.user.toJSON();
+    const decodedToken = jwt.verify(token, process.env.SECRET);
 
     const new_subTodo = {
       title: body.title,
@@ -85,7 +139,7 @@ const updatedSubTask = async (request, response, next) => {
       new_subTodo
     );
     const refreshSubTodo = await subTasks.findById(request.params.id);
-    response.json(refreshSubTodo.toJSON());
+    return response.json(refreshSubTodo.toJSON());
   } catch (exception) {
     next(exception);
   }
@@ -103,7 +157,7 @@ const markAsComplete = async (request, response, next) => {
       todoTask
     );
     const renderSubTasks = await subTasks.findById(request.params.id);
-    response.json(renderSubTasks.toJSON());
+    return response.json(renderSubTasks.toJSON());
   } catch (exception) {
     next(exception);
   }

@@ -11,16 +11,17 @@ const todoSchema = new mongoose.Schema({
     type: String
   },
   completed: Boolean,
-  user: {
+  user: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
+    ref: "User"
+  }
+  ],
   subTasks: [
-      {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Subtasks'
-      }
-    ]
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Subtasks"
+    }
+  ]
 });
 
 todoSchema.set("toJSON", {
@@ -31,6 +32,6 @@ todoSchema.set("toJSON", {
   }
 });
 
-const Todo = mongoose.model('Todos', todoSchema);
+const Todo = mongoose.model("Todos", todoSchema);
 
 module.exports = Todo;

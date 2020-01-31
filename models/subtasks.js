@@ -11,14 +11,14 @@ const subTasksSchema = new mongoose.Schema({
     type: String
   },
   completed: Boolean,
-  todos: {
+  todos: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Todos'
-  },
-  user: {
+    ref: "Todos"
+  }],
+  user: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
+    ref: "User"
+  }]
 });
 
 subTasksSchema.set("toJSON", {
