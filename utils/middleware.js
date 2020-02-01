@@ -25,6 +25,10 @@ const requestLogger = (request, response, next) => {
       return response.status(401).json({
         error: 'invalid token'
       })
+    } else if(error.message){
+      logger.error(error.message) 
+    } else{
+      logger.error(error.stack)
     }
     console.log(error.stack);
     logger.error(error.message)

@@ -2,6 +2,8 @@ const Todo = require("../../models/todo");
 const User = require("../../models/user.js");
 
 
+
+
 const getSpecificTodo = async (request, response, next) => {
   try {
     const todo = await Todo.findById(request.params.id);
@@ -44,11 +46,12 @@ const postTodo = async (request, response, next) => {
 
     const savedTodo = await todo.save();
     user.todos = user.todos.concat(savedTodo.id);
+
     await user.save();
 
     const result = await Todo.findById(savedTodo.id)
-      .populate("user", { username: 1, name: 1 })
-      .populate("subTasks", { title: 1, description: 1 });
+    .populate('user', {username: 1, name: 1})
+    .populate('subtodos', { title: 1, description: 1 })
 
     return response.json(result.toJSON());
   } catch (exception) {
@@ -58,7 +61,7 @@ const postTodo = async (request, response, next) => {
 
 const deleteTodo = async (request, response, next) => {
   try {
-    const deletedTask = await Todo.findOneAndRemove(request.params.id);
+    const deletedTask = await Todo.findByIdAndDelete(request.params.id);
 
     if (deletedTask) {
       return response
@@ -79,6 +82,10 @@ const updateTodo = async (request, response, next) => {
 
   try {
     const updatedTodo = await Todo.findById(request.params.id);
+
+    if(!updatedTodo){
+      response.status(404).send({ message: "Todo does not exist"})
+    }
 
     const new_todo = {
       title: body.title,
@@ -106,6 +113,10 @@ const markAsComplete = async (request, response, next) => {
 
   try {
     const todoTask = await Todo.findById(request.params.id);
+
+    if(!todoTask){
+      return response.status(404).send({ message: "Todo does not exist"})
+    }
     const completed_status = body.completed;
     todoTask.completed = completed_status;
     

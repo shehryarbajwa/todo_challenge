@@ -11,7 +11,7 @@ const subTodos = new mongoose.Schema({
     type: String
   },
   completed: Boolean,
-  todos: [
+  parentTodo: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Todos"
@@ -27,6 +27,6 @@ subTodos.set("toJSON", {
   }
 });
 
-const Subtodos = mongoose.model("subtodos", subTodos);
+const Subtodos = mongoose.model("Subtodos", subTodos);
 
 module.exports = Subtodos;

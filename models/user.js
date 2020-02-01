@@ -25,10 +25,10 @@ const userSchema = new mongoose.Schema({
       default: []
     }
   ],
-  subtodos: [
+  subtodos : [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "subtodos",
+      ref: "Subtodos",
       default: []
     }
   ]

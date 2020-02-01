@@ -7,6 +7,8 @@ const authorizeTodos = (rolesProvided = [role1, role2]) => {
   roles.push(rolesProvided[0]);
   roles.push(rolesProvided[1]);
 
+  let userId = ''
+
   return [
     // authorize based on user role
     (request, response, next) => {
@@ -32,7 +34,9 @@ const authorizeTodos = (rolesProvided = [role1, role2]) => {
       }
       
       request.decrypted = decrypted;
-      console.log(decrypted);
+
+      console.log(request.body)
+      
       if(!roles.find((role) => role == decrypted.role)){
         return response.status(401).json({message: 'Invalid user'})
       }

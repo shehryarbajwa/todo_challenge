@@ -25,9 +25,6 @@ const fetchSpecificTodo = async (request, response, next) => {
 }
 
 
-
-
-
 module.exports = {fetchUserbyId, fetchAllTodos,fetchSpecificTodo}
 
 

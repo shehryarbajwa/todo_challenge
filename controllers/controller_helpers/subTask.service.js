@@ -1,16 +1,14 @@
 const User = require("../../models/user.js");
 const Todo = require("../../models/todo.js");
 
-const Subtodos = require("../../models/subtodos")
-
-
+const Subtodos = require("../../models/subtodos");
 
 const getSpecificSubTask = async (request, response, next) => {
   try {
-    const subtasks = await Subtodos
-      .findById(request.params.id)
-      .populate("todos", { title: 1, description: 1 });
-    
+    const subtasks = await Subtodos.findById(
+      request.params.id
+    ).populate("parentTodo", { title: 1});
+
     if (subtasks) {
       return response.json(subtasks.toJSON());
     } else {
@@ -32,30 +30,29 @@ const postSubTask = async (request, response, next) => {
 
   try {
     const user = await User.findById(request.decrypted.id);
-    const todo = await Todo.findById(request.body.todoId)
+    const todo = await Todo.findById(request.body.todoId);
 
-    if(!todo){
-      response.status(404).json({ error: "todoId does not exist"})
+    if (!todo) {
+      response.status(404).json({ error: "todoId does not exist" });
     }
 
     const subtask = new Subtodos({
       title: body.title,
       description: body.description,
       completed: body.completed || false,
-      todoId: todo.id
+      parentTodo: todo.id
     });
 
     const savedSubTodo = await subtask.save();
-    user.subTasks = user.subtodos.concat(savedSubTodo.id)
-    todo.subTasks = todo.subtodos.concat(savedSubTodo.id)
 
-    await user.save();
-    await todo.save();
-    const saveTodo = await Subtodos.findOneAndUpdate({"todos": todo.id})
-    
+    user.subtodos = user.subtodos.concat(savedSubTodo.id)
+    todo.subtodos = todo.subtodos.concat(savedSubTodo.id)
+
+    await user.save()
+    await todo.save()
+
     const resultSubtodos = await Subtodos.findById(savedSubTodo.id)
-    .populate('todos', {title: 1, description: 1})
-
+    .populate("parentTodo", { title: 1});
 
     return response.json(resultSubtodos);
   } catch (exception) {
@@ -64,7 +61,6 @@ const postSubTask = async (request, response, next) => {
 };
 
 const deleteSubTask = async (request, response, next) => {
-  
   try {
     const deletedSubTask = await Subtodos.findByIdAndDelete(request.params.id);
     if (deletedSubTask) {
@@ -82,14 +78,13 @@ const deleteSubTask = async (request, response, next) => {
 };
 
 const updatedSubTask = async (request, response, next) => {
-
   try {
     const body = request.body;
-    const toUpdateSubTask = await Subtodos.findById(request.params.id);
-    const todo = await Todo.findById(request.params.todoId)
+    const toUpdateSubTask = await Subtodos.findById(body.id);
+    const todo = await Todo.findById(body.todoId);
 
-    if(!todo){
-      return response.status(404).json({error: "todoId doesnt exist"})
+    if (!todo) {
+      return response.status(404).json({ error: "todoId doesnt exist" });
     }
 
     const new_subTodo = {
@@ -97,7 +92,6 @@ const updatedSubTask = async (request, response, next) => {
       description: body.description,
       completed: body.completed || false,
       todoId: body.todoId
-    
     };
 
     const subtodo = await Subtodos.findByIdAndUpdate(
@@ -105,9 +99,10 @@ const updatedSubTask = async (request, response, next) => {
       new_subTodo
     );
 
-    const refreshSubTodo = await Subtodos.findById(request.params.id)
-    .populate("todos", {title: 1, description: 1});
-    
+    const refreshSubTodo = await Subtodos.findById(
+      request.params.id
+    ).populate("parentTodo", { title: 1, description: 1 });
+
     return response.json(refreshSubTodo);
   } catch (exception) {
     next(exception);
@@ -121,12 +116,14 @@ const markAsComplete = async (request, response, next) => {
     const subtodoTask = await Subtodos.findById(request.params.id);
     const completed_status = body.completed;
     subtodoTask.completed = completed_status;
-    
+
     const updatedSubTodo = await Subtodos.findByIdAndUpdate(
       request.params.id,
       subtodoTask
     );
-    const renderSubTasks = await Subtodos.findById(request.params.id);
+    const renderSubTasks = await Subtodos.findById(request.params.id)
+    .populate("parentTodo", { title: 1})
+
     return response.json(renderSubTasks.toJSON());
   } catch (exception) {
     next(exception);

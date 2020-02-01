@@ -1,5 +1,6 @@
 const Todo = require("../models/todo.js");
 const User = require("../models/user.js")
+const Subtodos = require("../models/subtodos.js")
 
 
 const usersInDb = async () => {
@@ -17,8 +18,14 @@ const userIdinDb = async () => {
   return users.map(user => user.id)
 }
 
+const subtodosinDb = async () => {
+  const subtodos = await Subtodos.find({})
+  return subtodos.map(subtodo => subtodo.toJSON())
+}
+
 module.exports = {
   todosinDB,
   usersInDb,
-  userIdinDb
+  userIdinDb,
+  subtodosinDb
 };
