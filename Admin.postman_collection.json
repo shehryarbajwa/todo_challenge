@@ -1,0 +1,1495 @@
+{
+	"info": {
+		"_postman_id": "3ce7005d-2691-4ab2-a79e-1bc58c3ff0a3",
+		"name": "Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"John Doe\",\n\t\"password\":\"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create user example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"John Doe\",\n\t\"password\":\"test123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-+lD1m7/DIMcMuMmtyMKhAPeFa6o\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 15:42:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"todos\": [],\n    \"username\": \"John Doe\",\n    \"id\": \"5e31a80310d004946a00e942\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get active todos of User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "Get active todos of User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/api/users/5e31a80310d004946a00e942",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"5e31a80310d004946a00e942"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-+lD1m7/DIMcMuMmtyMKhAPeFa6o\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 15:44:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"todos\": [],\n    \"username\": \"John Doe\",\n    \"id\": \"5e31a80310d004946a00e942\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login and verify authentication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"John Doe\",\n\t\"password\":\"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login and verify authentication",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"John Doe\",\n\t\"password\":\"test123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "211"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d3-i/Q1odLv2v69soIHfhBe43TJwcM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 15:48:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI1ZTMxYTgwMzEwZDAwNDk0NmEwMGU5NDIiLCJpYXQiOjE1ODAzMTI4ODV9.1975WHM0rkRNjslBLlzYv3voxddmjv2TKFhC9I_u9S8\",\n    \"username\": \"John Doe\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Access All Application Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Todolist",
+			"item": [
+				{
+					"name": "Get todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11778e0d-efa1-4eff-af7e-4cb07ffcdf1c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains todolists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.todos).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/todos",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"todos"
+							]
+						},
+						"description": "GET requests for all todos"
+					},
+					"response": [
+						{
+							"name": "Get todos with given todoId",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/api/todos/{{todoId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"todos",
+										"{{todoId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-NchXiHeCz/QOntEeLb/vCOlZqgA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 15:57:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"subTasks\": [],\n    \"title\": \"Leave office\",\n    \"description\": \"At 5.00 pm\",\n    \"completed\": false,\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31ab4310d004946a00e944\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Post a todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0880b66-0722-410a-8736-d327066cdb28",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response must be valid and have a body\", function () {",
+									"     pm.response.to.be.ok; ",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"});",
+									"",
+									"pm.test(\"response should be okay to process\", function () {",
+									"    pm.response.to.not.be.error;",
+									"    pm.response.to.have.jsonBody(\"success\");",
+									"    pm.response.to.not.have.jsonBody(\"error\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNoZWhyeWFyIiwiaWQiOiI1ZTMxOTNlYzhlOGFkMzdhNWY0ZWIzODYiLCJpYXQiOjE1ODAzMDkwOTh9.ZwW6z75i3_yqFIWfOGo0qoJaSrLXc-EzNXpAyFwCgPs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "title",
+								"value": "Work",
+								"type": "text"
+							},
+							{
+								"key": "description",
+								"value": "Project",
+								"type": "text"
+							},
+							{
+								"key": "date",
+								"value": "2019-12-04",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Leave office\",\n    \"description\":\"At 5.00 pm\",\n    \"completed\": false,\n    \"userId\":\"5e3193ec8e8ad37a5f4eb386\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/todos",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"todos"
+							]
+						},
+						"description": "Post new todo items"
+					},
+					"response": [
+						{
+							"name": "Post a todo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "title",
+										"value": "Work",
+										"type": "text"
+									},
+									{
+										"key": "description",
+										"value": "Project",
+										"type": "text"
+									},
+									{
+										"key": "date",
+										"value": "2019-12-04",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\":\"Dress for office\",\n    \"description\":\"At 9.00 am\",\n    \"completed\": false,\n    \"userId\": \"5e31a80310d004946a00e942\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/todos?userId={{userId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"todos"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "{{userId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "182"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b6-ieV0dicQHsdqDmEe7nymxrafK2k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 15:59:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"subTasks\": [],\n    \"title\": \"Dress for office\",\n    \"description\": \"At 9.00 am\",\n    \"completed\": false,\n    \"user\": {\n        \"username\": \"John Doe\",\n        \"id\": \"5e31a80310d004946a00e942\"\n    },\n    \"id\": \"5e31abf910d004946a00e945\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ddf5ecee-a43d-48b2-b9af-949d7c13145a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should be okay to process\", function () {",
+									"    pm.response.to.not.be.error;",
+									"    pm.response.to.have.jsonBody(\"success\");",
+									"    pm.response.to.not.have.jsonBody(\"error\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/todos/5e319bfc97099a814550a852",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"todos",
+								"5e319bfc97099a814550a852"
+							]
+						},
+						"description": "Delete a todoitem\t"
+					},
+					"response": [
+						{
+							"name": "Delete a todo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/api/todos/{{todoId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"todos",
+										"{{todoId}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:02:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Edit a todo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71ddaaf7-ab17-44eb-9c61-dbbe178da736",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response must be valid and have a body\", function () {",
+									"     pm.response.to.be.ok; ",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json; ",
+									"});",
+									"",
+									"pm.test(\"response should be okay to process\", function () {",
+									"    pm.response.to.not.be.error;",
+									"    pm.response.to.have.jsonBody(\"success\");",
+									"    pm.response.to.not.have.jsonBody(\"error\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Work a little late\",\n    \"description\":\"Leave office at 7.00 pm\",\n    \"completed\": false,\n    \"userId\":\"5e3193ec8e8ad37a5f4eb386\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/todos/5e319b8097099a814550a851",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"todos",
+								"5e319b8097099a814550a851"
+							]
+						},
+						"description": "Update a todoitem\t"
+					},
+					"response": [
+						{
+							"name": "Edit a todo",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\":\"Brew coffee a little late\",\n    \"description\":\"Brew at 9.15 am\",\n    \"completed\": false,\n    \"userId\":\"5e3193ec8e8ad37a5f4eb386\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/todos/{{todoId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"todos",
+										"{{todoId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-6412VFBbBnMZp6/6/l7Z09DpUdM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:06:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"subTasks\": [],\n    \"title\": \"Brew coffee a little late\",\n    \"description\": \"Brew at 9.15 am\",\n    \"completed\": false,\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31ad0510d004946a00e946\"\n}"
+						},
+						{
+							"name": "Edit a todo",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\":\"Brew coffee a little extra late\",\n    \"description\":\"Brew at 9.25 am\",\n    \"completed\": false,\n    \"userId\":\"5e31a80310d004946a00e942\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/todos/{{todoId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"todos",
+										"{{todoId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-j58Htx9aW7XGhQ29B3QQV7n4evM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:07:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"subTasks\": [],\n    \"title\": \"Brew coffee a little extra late\",\n    \"description\": \"Brew at 9.25 am\",\n    \"completed\": false,\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31ad0510d004946a00e946\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Mark as complete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "Mark as complete a todo item"
+					},
+					"response": [
+						{
+							"name": "Mark as complete",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"completed\": \"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/todos/{{todoId}}/completed",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"todos",
+										"{{todoId}}",
+										"completed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "172"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ac-M4GeKJM/VveikLYLFyqv5Bt5Has\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:09:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"subTasks\": [],\n    \"title\": \"Brew coffee a little extra late\",\n    \"description\": \"Brew at 9.25 am\",\n    \"completed\": true,\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31ad0510d004946a00e946\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "subTasks",
+			"item": [
+				{
+					"name": "Get a subtask",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"name": "Get a subtask",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/api/subtasks",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"subtasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "293"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"125-IRsh5jXtpujr6vUQNTJnPJW9zb4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:12:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"title\": \"Turn Brewing Machine On\",\n        \"description\": \"At 8.45 am\",\n        \"completed\": false,\n        \"todos\": {\n            \"title\": \"Brew coffee a little extra late\",\n            \"description\": \"Brew at 9.25 am\",\n            \"id\": \"5e31ad0510d004946a00e946\"\n        },\n        \"user\": {\n            \"username\": \"John Doe\",\n            \"id\": \"5e31a80310d004946a00e942\"\n        },\n        \"id\": \"5e31aed810d004946a00e948\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Mark as complete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"completed\":\"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/subtasks/{{subTaskId}}/completed",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"subtasks",
+								"{{subTaskId}}",
+								"completed"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Mark as complete",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"completed\":\"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/subtasks/{{subTaskId}}/completed",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"subtasks",
+										"{{subTaskId}}",
+										"completed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "180"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b4-K2sZPqeVZerATc4GlKIPr5Qal+w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:14:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Turn Brewing Machine On\",\n    \"description\": \"At 8.45 am\",\n    \"completed\": true,\n    \"todos\": \"5e31ad0510d004946a00e946\",\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31aed810d004946a00e948\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit a subtask",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Disregard meditation\",\n    \"description\": \"Instead workout at  9.15 am\",\n    \"completed\": false,\n    \"todoId\": \"5e319b2b97099a814550a84d\",\n    \"userId\": \"5e3193ec8e8ad37a5f4eb386\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/subtasks/5e319eb997099a814550a855",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"subtasks",
+								"5e319eb997099a814550a855"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a subtask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/subtasks/5e33fdb98638689b045f274a",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"subtasks",
+								"5e33fdb98638689b045f274a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a subtask",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/api/subtasks/{{subTaskId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"subtasks",
+										"{{subTaskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-6QEKI5dEqyApAzkdyMG1AD4ZIEA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:15:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Remove Snow\",\n    \"description\": \"At 8.35 am\",\n    \"completed\": false,\n    \"todos\": \"5e31ad0510d004946a00e946\",\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31af7d10d004946a00e949\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Post a subtask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"Turn Brewing Machine On\",\n    \"description\":\"At 8.45 am\",\n    \"completed\": false,\n    \"todoId\": \"5e31ad0510d004946a00e946\",\n    \"userId\": \"5e31a80310d004946a00e942\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/subtasks/",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"subtasks",
+								""
+							]
+						},
+						"description": "Post a subtask of an existinng todo task"
+					},
+					"response": [
+						{
+							"name": "Post a second subtask",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\":\"Remove Snow\",\n    \"description\":\"At 8.35 am\",\n    \"completed\": false,\n    \"todoId\": \"5e31ad0510d004946a00e946\",\n    \"userId\": \"5e31a80310d004946a00e942\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/subtasks/",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"subtasks",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-6QEKI5dEqyApAzkdyMG1AD4ZIEA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:14:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Remove Snow\",\n    \"description\": \"At 8.35 am\",\n    \"completed\": false,\n    \"todos\": \"5e31ad0510d004946a00e946\",\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31af7d10d004946a00e949\"\n}"
+						},
+						{
+							"name": "Post a subtask",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\":\"Turn Brewing Machine On\",\n    \"description\":\"At 8.45 am\",\n    \"completed\": false,\n    \"todoId\": \"5e31ad0510d004946a00e946\",\n    \"userId\": \"5e31a80310d004946a00e942\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/api/subtasks/",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"subtasks",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "181"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b5-UEBNznAVUvrLse8mmfCijFQZzqw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2020 16:12:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Turn Brewing Machine On\",\n    \"description\": \"At 8.45 am\",\n    \"completed\": false,\n    \"todos\": \"5e31ad0510d004946a00e946\",\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31aed810d004946a00e948\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1eb0ad3c-cb91-49b4-9700-0be8c1a18872",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9e0ceea5-9962-4658-9081-4c353c4a1616",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7a16144e-c803-4c03-9461-2cd46e1dcf5f",
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

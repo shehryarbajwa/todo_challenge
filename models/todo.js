@@ -11,15 +11,16 @@ const todoSchema = new mongoose.Schema({
     type: String
   },
   completed: Boolean,
-  user: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  }
-  ],
-  subTasks: [
+  subtodos: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Subtasks"
+      ref: "Subtodos"
+    }
+  ],
+  user: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     }
   ]
 });

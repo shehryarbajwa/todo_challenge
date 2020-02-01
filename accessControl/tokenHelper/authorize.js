@@ -1,42 +1,52 @@
 var jwtDecode = require("jwt-decode");
 var jwt = require("jsonwebtoken");
+const { Admin, UserRole } = require("../tokenHelper/role.js");
 
-const { AdminRole, UserRole } = require("../tokenHelper/role.js");
+const authorizeTodos = (rolesProvided = [role1, role2]) => {
+  const roles = [];
+  roles.push(rolesProvided[0]);
+  roles.push(rolesProvided[1]);
 
-const authorizeTodos = (role1, role2) => {
-  roles = [];
-  if (typeof roles === "string") {
-    roles.append(role1);
-    roles.append(role2);
-  }
+  let userId = ''
 
   return [
     // authorize based on user role
     (request, response, next) => {
-      const token = request.token;
-      const authorization = request.get("authorization");
-      let decodedJwt = jwtDecode(token);
-      let methods = ["POST", "GET", "PUT", "DELETE"]
+      const token = request.get('Authorization');
 
-      for (const method in methods) {
-        if(request.method === method && decodedJwt.role !== AdminRole){
-          return response.status(401).json({ message: "Unauthorized" });
-        }
+      if(!token.includes('bearer')) {
+        return response.status(401).json({message: 'Not a bearer token'})
       }
 
-      if (authorization && !authorization.toLowerCase().startsWith("bearer ")) {
-        return response.status(401).json({ message: "Unauthorized" });
+      const tokenPart = token.split(' ');
+
+      if(tokenPart.length != 2){
+        return response.status(401).json({message: 'Not a valid bearer token'})
       }
 
-      if (roles.length > 2) {
-        return response.status(401).json({ message: "Unauthorized" });
+      const encryptedToken  = tokenPart[1];
+
+      let decrypted = '';
+      try {
+        decrypted = jwt.verify(encryptedToken, process.env.SECRET);
+      }catch (exception) {
+        return response.status(401).json({message: 'Not a valid bearer token'})
       }
+      
+      request.decrypted = decrypted;
+
+      console.log(request.body)
+      
+      if(!roles.find((role) => role == decrypted.role)){
+        return response.status(401).json({message: 'Invalid user'})
+      }
+      
 
       next();
 
       // authentication and authorization successful
     }
-  ]
-}
+  ];
+};
 
 module.exports = { authorizeTodos };

@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/subtasks
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNTQ3NjRhMzVmZTAxNjhmYzUyMDEwIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA1NTAwMDV9.qf9pQ1O994aQQ9SEun90lZngYjukUglQL87h_-rEX9M
+
+{
+    "title":"Creating first second sub-task",
+    "description":"Pick up eggs on the drive back",
+    "completed": false,
+    "todoId":"5e3550274624291fd36b917f"
+}
