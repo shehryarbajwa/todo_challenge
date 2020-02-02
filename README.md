@@ -52,8 +52,8 @@ Admin can view all the Users, Todos, Subtodos of the entire application
 7-To get the user's active todos, subtodos and the user details, proceed to the endpoint and provide the user's id generated from the previous request:
 Make sure you provide the bearer token and request's content-type in the format:
 ## endpoint: http://localhost:3001/api/users/:id
-Content-Type: application/json
-Bearer: XXXXXXXXXXXX
+Content-Type: application/json <br>
+Bearer: XXXXXXXXXXXX <br>
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/.png)
 ![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/.png)
 
