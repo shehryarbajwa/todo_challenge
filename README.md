@@ -125,10 +125,10 @@ Bearer: XXXXXXXXXXXX <br>
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_subtodo/get_subtodo.png)
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_subtodo/subtodo_response.png)
 
-## endpoint: PUT http://localhost:3001/api/todos/:id
+## endpoint: PUT http://localhost:3001/api/subtodos/:id
 
-![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo.png)
-![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo_response.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_subtodo/edit_subtodo.png)
+![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_subtodo/edit_subtodo_response.png)
 
 
 5-Change a todo's completed status to True
