@@ -1,5 +1,5 @@
 # todo_challenge
-TodoList challenge in Node, Express, MongoDB
+TodoList challenge in Node, Express, MongoDB <br>
 The TodoListAPI is organized around REST
 
 The TodoListAPI uses JWT tokens to authenticate requests. 
