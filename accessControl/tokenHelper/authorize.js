@@ -12,7 +12,7 @@ const authorizeTodos = (rolesProvided = [role1, role2]) => {
     (request, response, next) => {
       const token = request.get("Authorization");
 
-      if (!token.includes("bearer")) {
+      if (!token.includes("Bearer")) {
         return response.status(401).json({ message: "Not a bearer token" });
       }
 
