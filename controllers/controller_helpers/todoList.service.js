@@ -9,7 +9,7 @@ const getSpecificTodo = async (request, response, next) => {
 
     if (request.decrypted.role !== Admin) {
       if(request.decrypted.id !== todoUser){
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
+        return response.status(403).json({ message: "The user doesn't have permission to access this request." });
       }
     }
 

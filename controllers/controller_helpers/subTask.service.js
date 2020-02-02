@@ -2,19 +2,16 @@ const User = require("../../models/user.js");
 const Todo = require("../../models/todo.js");
 const Subtodos = require("../../models/subtodos");
 const { Admin } = require("../../accessControl/tokenHelper/role.js");
-const {
-  CheckForAdminPrivileges
-} = require("../service_helpers/subTask.helper.js");
 
 const getSpecificSubTask = async (request, response, next) => {
   try {
-    const _subtasks = await Subtodos.findById(request.params.id);
+    const _subtodos = await Subtodos.findById(request.params.id);
 
-    if (!_subtasks) {
+    if (!_subtodos) {
       return response.status(404).json({ error: "subtodo does not exist" });
     }
 
-    const todoId = _subtasks.parentTodo[0].toString();
+    const todoId = _subtodos.parentTodo[0].toString();
     const todo = await Todo.findById(todoId);
     const todoUser = todo.user[0].toString();
 
@@ -24,12 +21,11 @@ const getSpecificSubTask = async (request, response, next) => {
       }
     }
 
-    const resultSubtodos = await Subtodos.findById(
-      savedSubTodo.id
-    ).populate("parentTodo", { title: 1 });
+    const resultSubtodos = await Subtodos.findById(request.params.id)
+    .populate("parentTodo", { title: 1 });
 
     if (resultSubtodos) {
-      return response.json(subTodos.toJSON());
+      return response.json(resultSubtodos.toJSON());
     } else {
       return response.status(404).end();
     }
@@ -52,7 +48,7 @@ const postSubTask = async (request, response, next) => {
     const todo = await Todo.findById(request.body.todoId);
 
     if (!todo) {
-      return response.status(403).json({ message: "The user doesnt have permission to access this request." });
+      return response.status(401).json({ message: "The todo doesn't exist" });
     }
 
     const subtask = new Subtodos({

@@ -30,7 +30,7 @@ app.use(tokenMiddleware)
 
 app.use('/api/login', loginRouter)
 app.use('/api/todos', todoRouter)
-app.use('/api/subtasks', taskRouter)
+app.use('/api/subtodos', taskRouter)
 app.use('/api/users', usersRouter)
 
 app.use(middleware.unknownEndpoint)

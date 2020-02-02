@@ -42,9 +42,9 @@ describe("Tests for todoapp", () => {
       .post("/api/login")
       .send({ username: "test123", password: "test123" });
 
-    token = "bearer " + res.body.token;
+    token = "Bearer " + res.body.token;
     subtodotoken = token
-    adminToken = "bearer " + res1.body.token;
+    adminToken = "Bearer " + res1.body.token;
   });
   it("get a 400 response when the title or description is missing from the request", async () => {
     const todoWithoutTitle = {
@@ -200,7 +200,7 @@ describe("Tests for subtasks", () => {
     const _todoId = todos.map(todo => todo.id);
 
     const res = await api
-      .post("/api/subtasks")
+      .post("/api/subtodos")
       .set("Authorization", subtodotoken)
       .send({
         title: "Test2",
@@ -220,7 +220,7 @@ describe("Tests for subtasks", () => {
     const _todoId = todos.map(todo => todo.id);
 
     const res = await api
-      .post("/api/subtasks")
+      .post("/api/subtodos")
       .set("Authorization", subtodotoken)
       .send({
         title: "Test3",
@@ -250,7 +250,7 @@ describe("Tests for subtasks", () => {
     };
 
     const updatedSubTodo = await api
-      .put(`/api/subtasks/${_subtodosId[0]}`)
+      .put(`/api/subtodos/${_subtodosId[0]}`)
       .set("Authorization", subtodotoken)
       .send(completedSubtodo);
 
@@ -263,7 +263,7 @@ describe("Tests for subtasks", () => {
     const _subtodosId = subtodos.map(subtodo => subtodo.id);
 
     const response = await api
-      .get(`/api/subtasks/${_subtodosId[0]}`)
+      .get(`/api/subtodos/${_subtodosId[0]}`)
       .set("Authorization", subtodotoken)
       .send();
     
@@ -276,7 +276,7 @@ describe("Tests for subtasks", () => {
     const subtodosId = subtodos.map(subtodo => subtodo.id);
 
     const response = await api
-      .put(`/api/subtasks/${subtodosId[1]}/completed`)
+      .put(`/api/subtodos/${subtodosId[1]}/completed`)
       .set("Authorization", subtodotoken)
       .send({completed: true});
 
@@ -292,7 +292,7 @@ describe("Tests for subtasks", () => {
 
     const completedUpdate = { completed: false };
     const updatedsubtodo = await api
-      .put(`/api/subtasks/${subtodosId[0]}/completed`)
+      .put(`/api/subtodos/${subtodosId[0]}/completed`)
       .set("Authorization", subtodotoken)
       .send(completedUpdate)
       .expect(200);
@@ -307,7 +307,7 @@ describe("Tests for subtasks", () => {
     const subtodostoDelete = subtodos.map(subtodo => subtodo.id);
     
     const deletedSubtodo = await api
-      .delete(`/api/subtasks/${subtodostoDelete[0]}`)
+      .delete(`/api/subtodos/${subtodostoDelete[0]}`)
       .set("Authorization", subtodotoken)
       .expect(204);
 
