@@ -114,8 +114,8 @@ Bearer: XXXXXXXXXXXX <br>
 
 The endpoint requires the title, description, completed and todoId as body properties. Title, Description, TodoId are mandatory
 
-![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtask.png)
-![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtask_response.png)
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtodo.png)
+![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtodo_response.png)
 
 3-Get the details of the todo that you just posted. This endpoint is accessibly if you provide the todoId in the request as parameters. 
 ## endpoint: GET http://localhost:3001/api/todos/:id
