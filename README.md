@@ -132,9 +132,9 @@ Bearer: XXXXXXXXXXXX <br>
 
 
 5-Change a todo's completed status to True
-## endpoint: PUT http://localhost:3001/api/todos/:id/completed
-![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_todo_status.png)
-![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_status_response.png)
+## endpoint: PUT http://localhost:3001/api/subtodos/:id/completed
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_subtodo_status/edit_subtodo_status.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_subtodo_status/edit_subtodo_status_response.png)
 
 6-Delete a todo
 
