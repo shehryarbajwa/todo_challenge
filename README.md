@@ -17,11 +17,12 @@ Postman <br>
 
 ## Access Control
 
-Access Control List has been created by creating an admin who has access to every route of Users, Todos, SubTasks. Users without valid access token cannot view their Todos,SubTasks, User Information.
+Access Control List has been created by creating an admin who has access to every route of Users, Todos, SubTasks. <br>
+Users without valid access token cannot view their Todos,SubTasks, User Information. <br>
 
-Admin can make GET, PUT, DELETE requests to todos of each user.
-Admin can make GET, PUT, DELETE requests to sub todos of todos for each user
-Admin can view all the Users, Todos, Subtodos of the entire application
+Admin can make GET, PUT, DELETE requests to todos of each user. <br>
+Admin can make GET, PUT, DELETE requests to sub todos of todos for each user <br>
+Admin can view all the Users, Todos, Subtodos of the entire application <br>
 
 ## Instructions on how to run the project:
 
@@ -141,7 +142,13 @@ Bearer: XXXXXXXXXXXX <br>
 ## endpoint: DELETE http://localhost:3001/api/todos/:id
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/delete_subtodo/delete_subtodo.png)
 
+## Admin Endpoints:
 
+## endpoint: http://localhost:3001/api/users/admin
+
+## Not accessibly to non-admin users.
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/admin_role_access/admin_role_request.png)
+![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/admin_role_access/admin_role_response.png)
 
 
 
