@@ -62,6 +62,10 @@ Bearer: XXXXXXXXXXXX <br>
 ![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/edit_collection.png)
 ![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/add_content_type.png)
 
+## Request:
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/get_user_request.png)
+![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/get_user_response.png)
+
 ## CRUD Operations
 
 1-Next we start doing CRUD operations.
