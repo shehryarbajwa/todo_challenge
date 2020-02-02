@@ -151,7 +151,20 @@ Bearer: XXXXXXXXXXXX <br>
 ![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/admin_role_access/admin_role_response.png)
 
 
+## Admin has access to the following endpoints of users
 
+GET http://localhost:3001/api/users/:id
+GET http://localhost:3001/api/todos/:id
+PUT http://localhost:3001/api/todos/:id
+PUT http://localhost:3001/api/todos/:id/completed
+DELETE http://localhost:3001/api/todos/:id
+
+GET http://localhost:3001/api/subtodos/:id
+PUT http://localhost:3001/api/subtodos/:id
+PUT http://localhost:3001/api/subtodos/:id/completed
+DELETE http://localhost:3001/api/subtodos/:id
+
+Admin.postman collection has all test suites for admin testing. If you generate a new login for admin, edit the collection and change the authorization(admin) token in Postman and then run the collection suite
 
 
 
