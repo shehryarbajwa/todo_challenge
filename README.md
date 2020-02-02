@@ -34,6 +34,10 @@ If I were to redo the project, with more time on my hands, I would create better
 4-Models could be modelled better with one to many relationships without updating their Id's each time <br>
 5-Instead of providing a todoId each time for creating a subtodo, automate that function <br>
 
+## Running tests
+
+Tests are located in the test folder which can be run by using npm test
+
 ## Instructions on how to run the project:
 
 1-Clone the project from the github repository
