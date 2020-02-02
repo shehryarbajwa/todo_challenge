@@ -1,6 +1,6 @@
-PUT http://localhost:3001/api/subtasks/5e35b23c54fb3773f3822888/completed 
+PUT http://localhost:3001/api/subtasks/<id>/completed 
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlam9icyIsImlkIjoiNWUzNTk5MTNkM2ZlM2I1ODQyMjgxZjEyIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNTgwNTcwOTA2fQ.0jOEJ2ELz2D8CpgXGbzrOylCY4VPiOdlBTf0dz_cKLE
+Authorization: Bearer 
 
 {
     "completed": false

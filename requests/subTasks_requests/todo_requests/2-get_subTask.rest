@@ -1,2 +1,2 @@
-GET http://localhost:3001/api/subtasks/5e35b23c54fb3773f3822888
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNTk5NDdkM2ZlM2I1ODQyMjgxZjEzIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA1NzA5Njd9.Fc30MEJaV8R27UoR17ANRU6GCWrnh1e4T7fGxDFV-CE
+GET http://localhost:3001/api/subtasks/<id>
+Authorization: Bearer 

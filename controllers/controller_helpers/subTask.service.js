@@ -106,10 +106,8 @@ const updatedSubTask = async (request, response, next) => {
   try {
     const body = request.body;
     const _subtasks = await Subtodos.findById(request.params.id);
-    console.log(_subtasks)
     const todoId = _subtasks.parentTodo[0].toString();
     const todo = await Todo.findById(todoId);
-    console.log(todo)
     const todoUser = todo.user[0].toString();
 
     if (request.decrypted.role !== Admin) {

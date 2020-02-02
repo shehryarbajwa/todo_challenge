@@ -9,10 +9,10 @@ const api = supertest(app);
 
 
 let subtodotoken = ''
+let adminToken = ''
 
 describe("Tests for todoapp", () => {
   let token = "";
-  let adminToken = "";
   beforeAll(async () => {
     await emptyDatabase();
 

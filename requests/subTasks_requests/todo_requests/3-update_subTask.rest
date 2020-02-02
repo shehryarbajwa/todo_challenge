@@ -1,10 +1,9 @@
-PUT http://localhost:3001/api/subtasks/5e3550715b161d21487b7c21
+PUT http://localhost:3001/api/subtasks/<id>
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsLnR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNDRiNDVlODg0ZTZmN2M0N2NiMWE1Iiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA0ODU1Mzd9.7AnJEmei8vL8bpd8tSJsmcGkHWqrWlP-MNkrwGxwT9g
-
+Authorization: Bearer 
 
 {
-    "title":"Sub-Task -- 3",
+    "title":"Sub-Gates Task -- 3--admin",
     "description":"Eat Breakfast at 8.45 am",
     "completed": true
 }

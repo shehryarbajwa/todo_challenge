@@ -1,9 +1,9 @@
-PUT http://localhost:3001/api/todos/5e3599a4d3fe3b5842281f15
+PUT http://localhost:3001/api/todos/<id>
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNTk5NDdkM2ZlM2I1ODQyMjgxZjEzIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA1NzA5Njd9.Fc30MEJaV8R27UoR17ANRU6GCWrnh1e4T7fGxDFV-CE
+Authorization: Bearer 
 
 {
-    "title":"Change Bill's first task ",
+    "title":"Change Sam's first task ",
     "description":"Testing admin privileges",
     "completed": false
 }

@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/subtasks
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlam9icyIsImlkIjoiNWUzNTk5MTNkM2ZlM2I1ODQyMjgxZjEyIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNTgwNTcwOTA2fQ.0jOEJ2ELz2D8CpgXGbzrOylCY4VPiOdlBTf0dz_cKLE
+Authorization: Bearer 
 
 {
-    "title":"Steve's first subtask Admin sub-task",
+    "title":"first subtask Admin sub-task",
     "description":"Pick up eggs on the drive back",
     "completed": false,
-    "todoId":"5e35b730edba5b781a6ae3d0"
+    "todoId":"<todoId>"
 }

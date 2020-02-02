@@ -1,7 +1,6 @@
-PUT http://localhost:3001/api/todos/5e35998dd3fe3b5842281f14/completed
+PUT http://localhost:3001/api/todos/<id>/completed
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNTk5NDdkM2ZlM2I1ODQyMjgxZjEzIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA1NzA5Njd9.Fc30MEJaV8R27UoR17ANRU6GCWrnh1e4T7fGxDFV-CE
-
+Authorization: Bearer 
 {
     "completed": true
 }
