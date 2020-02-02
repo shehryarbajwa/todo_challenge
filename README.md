@@ -79,7 +79,10 @@ Bearer: XXXXXXXXXXXX <br>
 ![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_todo/post_todo.png)
 ![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_todo/post_todo_response.png)
 
-3-To test out the application better, it is recommended to create two todo tasks. Again following the same procedure.
+3-Get the details of the todo that you just posted. This endpoint is accessibly if you provide the todoId in the request as parameters. 
+
+
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_todo/get_todo.png)
 
 13- To see an individual todo task, navigate to the endpoint, and provide your todoId.
 Sample request:
