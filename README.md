@@ -24,6 +24,16 @@ Admin can make GET, PUT, DELETE requests to todos of each user. <br>
 Admin can make GET, PUT, DELETE requests to sub todos of todos for each user <br>
 Admin can view all the Users, Todos, Subtodos of the entire application <br>
 
+## Design Challenges:
+
+If I were to redo the project, with more time on my hands, I would create better logic for:
+
+1-Sending an email when registering as an Admin to make the API more secure <br>
+2-Use third party libraries to generate email campaign to verify user <br>
+3-Use two factor authentication for verification <br>
+4-Models could be modelled better with one to many relationships without updating their Id's each time <br>
+5-Instead of providing a todoId each time for creating a subtodo, automate that function <br>
+
 ## Instructions on how to run the project:
 
 1-Clone the project from the github repository
@@ -150,6 +160,21 @@ Bearer: XXXXXXXXXXXX <br>
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/admin_role_access/admin_role_request.png)
 ![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/admin_role_access/admin_role_response.png)
 
+
+## Admin has access to the following endpoints of users
+
+GET http://localhost:3001/api/users/:id <br>
+GET http://localhost:3001/api/todos/:id <br>
+PUT http://localhost:3001/api/todos/:id <br>
+PUT http://localhost:3001/api/todos/:id/completed <br>
+DELETE http://localhost:3001/api/todos/:id <br>
+
+GET http://localhost:3001/api/subtodos/:id <br>
+PUT http://localhost:3001/api/subtodos/:id <br>
+PUT http://localhost:3001/api/subtodos/:id/completed <br>
+DELETE http://localhost:3001/api/subtodos/:id <br>
+
+Admin.postman collection has all test suites for admin testing. <br> If you generate a new login for admin, edit the collection and change the authorization(admin) token in Postman and then run the collection suite
 
 
 
