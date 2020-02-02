@@ -139,7 +139,7 @@ Bearer: XXXXXXXXXXXX <br>
 6-Delete a todo
 
 ## endpoint: DELETE http://localhost:3001/api/todos/:id
-![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/delete_todo/delete_todo.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/delete_subtodo/delete_subtodo.png)
 
 
 
