@@ -1,4 +1,4 @@
-# Todo Challenge
+# Todo Challenge (Node, MongoDB, Express, Role Based Access)
 TodoList challenge in Node, Express, MongoDB <br>
 The TodoListAPI is organized around REST
 
@@ -24,6 +24,8 @@ Admin can make GET, PUT, DELETE requests to sub todos of todos for each user
 Admin can view all the Users, Todos, Subtodos of the entire application
 
 ## Instructions on how to run the project:
+
+1-Clone the project from the github repository
 
 1-On your terminal, run npm install to download all the project dependencies.
 
