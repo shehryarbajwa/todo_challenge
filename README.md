@@ -54,13 +54,13 @@ Make sure you provide the bearer token and request's content-type in the format:
 ## endpoint: http://localhost:3001/api/users/:id
 Content-Type: application/json
 Bearer: XXXXXXXXXXXX
-
-![alt Get User Request](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user_request.png)
-![alt Response from User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user_response.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/.png)
+![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/.png)
 
 ## If in Postman, you can set the token once and make subsequent requests by providing the saved token
-![alt Add Bearer Token](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/add_bearer_token.png)
-![alt Content-Type ](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/add_content_type.png)
+![2](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/add_bearer_token.png)
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/edit_collection.png)
+![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user/add_content_type.png)
 
 ## CRUD Operations
 
