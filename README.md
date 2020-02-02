@@ -122,7 +122,8 @@ Bearer: XXXXXXXXXXXX <br>
 
 4-Edit a todo you created with an updated title, description, completed status. In case completed status is not set, it will be set to false
 
-![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_todo/get_todo.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_subtodo/get_subtodo.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_subtodo/get_subtodo_response.png)
 
 ## endpoint: PUT http://localhost:3001/api/todos/:id
 
