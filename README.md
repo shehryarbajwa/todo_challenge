@@ -80,6 +80,14 @@ Bearer: XXXXXXXXXXXX <br>
 ![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_todo/post_todo_response.png)
 
 3-Get the details of the todo that you just posted. This endpoint is accessibly if you provide the todoId in the request as parameters. 
+## endpoint: GET http://localhost:3001/api/todos/:id
+
+4-Edit a todo you created with an updated title, description, completed status. In case completed status is not set, it will be set to false
+
+## endpoint: PUT http://localhost:3001/api/todos/:id
+
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo.png)
+![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo_response.png)
 
 
 ![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_todo/get_todo.png)
