@@ -35,6 +35,10 @@ Admin can view all the Users, Todos, Subtodos of the entire application
 
 5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Create a User by providing a name, username, email, password making sure username is not less than 5 characters. Username, email and password are mandatory. The email field determines whether a user is an Admin or User. Please proceed with the following steps.
 ## endpoint: http://localhost:3001/api/users/signup
+![alt Create User Request](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/create_user.png)
+<br>
+
+![alt Create User Response](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/response_create_user.png)
 
 
 6-Proceed to the endpoint to login. Once logged in, you will be provided with an access token that will validate all your API Endpoint requests. Store the token in a safe place since you will require it to access all your application data. In addition, you can store your userId, that is generated as id from the request to check your user details.
