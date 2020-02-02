@@ -28,11 +28,11 @@ Admin can view all the Users, Todos, Subtodos of the entire application <br>
 
 If I were to redo the project, with more time on my hands, I would create better logic for:
 
-1-Sending an email when registering as an Admin to make the API more secure
-2-Use third party libraries to generate email campaign to verify user
-3-Use two factor authentication for verification
-4-Models could be modelled better with one to many relationships without updating their Id's each time 
-5-Instead of providing a todoId each time for creating a subtodo, automate that function
+1-Sending an email when registering as an Admin to make the API more secure <br>
+2-Use third party libraries to generate email campaign to verify user <br>
+3-Use two factor authentication for verification <br>
+4-Models could be modelled better with one to many relationships without updating their Id's each time <br>
+5-Instead of providing a todoId each time for creating a subtodo, automate that function <br>
 
 ## Instructions on how to run the project:
 
