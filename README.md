@@ -95,7 +95,7 @@ Bearer: XXXXXXXXXXXX <br>
 5-Change a todo's completed status to True
 ## endpoint: PUT http://localhost:3001/api/todos/:id/completed
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_todo_status.png)
-![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_todo_response.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_status_response.png)
 
 
 14-In case you forgot your Todo's id, navigate to the get_user Route and provide your access token and userId to be able to access your todos.
