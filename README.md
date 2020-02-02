@@ -36,7 +36,7 @@ Admin can view all the Users, Todos, Subtodos of the entire application
 4-These references will be used to authorize access to a database(Test and Production) and validate JWT tokens. 
 
 5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Create a User by providing a name, username, email, password making sure username is not less than 5 characters. Username, email and password are mandatory. The email field determines whether a user is an Admin or User. Please proceed with the following steps.
-## endpoint: http://localhost:3001/api/users/signup
+## endpoint:POST http://localhost:3001/api/users/signup
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/create_user/create_user.png)
 <br>
 
@@ -44,7 +44,7 @@ Admin can view all the Users, Todos, Subtodos of the entire application
 
 
 6-Proceed to the endpoint to login. Once logged in, you will be provided with an access token that will validate all your API Endpoint requests. Store the token in a safe place since you will require it to access all your application data. In addition, you can store your userId, that is generated as id from the request to check your user details.
-## endpoint: http://localhost:3001/api/users/login
+## endpoint: POST http://localhost:3001/api/users/login
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/login_user/login_user.png)
 <br>
 
@@ -53,7 +53,7 @@ Admin can view all the Users, Todos, Subtodos of the entire application
 
 7-To get the user's active todos, subtodos and the user details, proceed to the endpoint and provide the user's id generated from the previous request:
 Make sure you provide the bearer token and request's content-type in the format:
-## endpoint: http://localhost:3001/api/users/:id
+## endpoint: GET http://localhost:3001/api/users/:id
 Content-Type: application/json <br>
 Bearer: XXXXXXXXXXXX <br>
 <br>
@@ -72,24 +72,12 @@ Bearer: XXXXXXXXXXXX <br>
 
 1-Next we start doing CRUD operations.
 
-2-Navigate to the requests file in the todo_requests folder. And click create_todo.rest file. Alternatively, you can use curl to access the endpoint. Please donot forget to use your access token generated earlier to add to your request Authorization with bearer preceeeding it. 
-Please providee the title, description and completed status of the todo. In case you donot specifiy the completed status, it will be set to false.
+2-Please providee the title, description and completed status of the todo. In case you donot specifiy the completed status, it will be set to false.
 
-endpoint:           http://localhost:3001/api/todos/
-                    POST request
-                    Access Token required
+## endpoint: POST http://localhost:3001/api/todos/
 
-Sample request:
-POST http://localhost:3001/api/todos
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-
-
-{
-	"title":"Remove morning snow",
-    "description":"At 9.15 am",
-    "completed": false
-}
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_todo/post_todo.png)
+![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_todo/post_todo_response.png)
 
 3-To test out the application better, it is recommended to create two todo tasks. Again following the same procedure.
 
