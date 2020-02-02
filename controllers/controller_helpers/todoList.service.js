@@ -15,7 +15,7 @@ const getSpecificTodo = async (request, response, next) => {
 
     const todoById = await Todo.findById(request.params.id)
       .populate("user", { username: 1, name: 1 })
-      .populate("subTasks", { title: 1, description: 1 });
+      .populate("subtodos", { title: 1, description: 1 });
 
     if (todoById) {
       return response.json(todoById);
@@ -119,7 +119,7 @@ const updateTodo = async (request, response, next) => {
 
     const resultAfterUpdate = await Todo.findById(updateTodoComplete.id)
       .populate("user", { username: 1, name: 1 })
-      .populate("subTasks", { title: 1, description: 1 });
+      .populate("subtodos", { title: 1, description: 1 });
     return response.json(resultAfterUpdate.toJSON());
   } catch (exception) {
     next(exception);
@@ -152,7 +152,7 @@ const markAsComplete = async (request, response, next) => {
 
     const resultAfterUpdate = await Todo.findById(request.params.id)
       .populate("user", { username: 1, name: 1 })
-      .populate("subTasks", { title: 1, description: 1 });
+      .populate("subtodos", { title: 1, description: 1 });
     
     return response.json(resultAfterUpdate.toJSON());
   } catch (exception) {

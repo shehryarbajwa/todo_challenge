@@ -2,8 +2,8 @@ POST http://localhost:3001/api/users/signup
 Content-Type: application/json
 
 {
-    "name":"SteveJobs",
-    "username":"stevejobs",
-    "email":"steve.jobs@commercebear.com",
-    "password":"steve123"
+    "name":"John Bear",
+    "username":"johnbear",
+    "email":"john.doe@commercebear.com",
+    "password":"bear123"
 }

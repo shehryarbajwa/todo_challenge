@@ -946,17 +946,6 @@
 							"body": "{\n    \"subTasks\": [],\n    \"title\": \"Brew coffee a little extra late\",\n    \"description\": \"Brew at 9.25 am\",\n    \"completed\": true,\n    \"user\": \"5e31a80310d004946a00e942\",\n    \"id\": \"5e31ad0510d004946a00e946\"\n}"
 						}
 					]
-				},
-				{
-					"name": "Create Todos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -1461,6 +1450,16 @@
 			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlam9icyIsImlkIjoiNWUzNTc3Njk4OWQ3ZmY0YjY0MjFkYTA5Iiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNTgwNTY5OTc1fQ.20yTJmMDnLnva34F3ApUyeBNf7FHQjFIo-P5QaUqn1M",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -1485,7 +1484,7 @@
 	],
 	"variable": [
 		{
-			"id": "7a16144e-c803-4c03-9461-2cd46e1dcf5f",
+			"id": "79a69bc9-7b1e-4c79-9583-163e636f27c7",
 			"key": "adminToken",
 			"value": "",
 			"type": "string"
