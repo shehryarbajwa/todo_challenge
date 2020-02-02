@@ -112,13 +112,13 @@ Bearer: XXXXXXXXXXXX <br>
 
 ## endpoint: POST http://localhost:3001/api/subtodos/
 
-The endpoint requires the title, description, completed and todoId as body properties. Title, Description, TodoId are mandatory
+1- The endpoint requires the title, description, completed and todoId as body properties. Title, Description, TodoId are mandatory
 
-![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtodo.png)
-![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtodo_response.png)
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtodo/post_subtodo.png)
+![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtodo/post_subtodo_response.png)
 
-3-Get the details of the todo that you just posted. This endpoint is accessibly if you provide the todoId in the request as parameters. 
-## endpoint: GET http://localhost:3001/api/todos/:id
+2-Get the details of the sub-todo that you just posted. This endpoint is accessibly if you provide the todoId in the request as parameters. 
+## endpoint: GET http://localhost:3001/api/subtodos/:id
 
 4-Edit a todo you created with an updated title, description, completed status. In case completed status is not set, it will be set to false
 
