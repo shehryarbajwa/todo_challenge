@@ -23,9 +23,16 @@ const subtodosinDb = async () => {
   return subtodos.map(subtodo => subtodo.toJSON())
 }
 
+const emptyDatabase = async() => {
+  await User.remove({});
+  await Todo.remove({});
+  await Subtodos.remove({});
+}
+
 module.exports = {
   todosinDB,
   usersInDb,
   userIdinDb,
-  subtodosinDb
+  subtodosinDb,
+  emptyDatabase
 };

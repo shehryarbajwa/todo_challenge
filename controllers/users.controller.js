@@ -55,7 +55,7 @@ usersRouter.post("/signup", async (request, response, next) => {
 usersRouter.get("/admin", authorizeTodos([Admin]), getAllUsers)
 
 //For the currentUser who is loggedIn after jwt authorization
-usersRouter.get("/:id", authorizeTodos([]), getUsersById)
+usersRouter.get("/:id", authorizeTodos([Admin, UserRole]), getUsersById)
 
 
 module.exports = usersRouter;

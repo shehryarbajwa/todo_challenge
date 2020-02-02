@@ -2,8 +2,8 @@ POST http://localhost:3001/api/users/signup
 Content-Type: application/json
 
 {
-    "name":"Bill Gates",
-    "username":"billgates",
-    "email":"bill.gates@microsoft.com",
-    "password":"gates123"
+    "name":"SteveJobs",
+    "username":"stevejobs",
+    "email":"steve.jobs@commercebear.com",
+    "password":"steve123"
 }

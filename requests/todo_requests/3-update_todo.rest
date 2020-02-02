@@ -1,9 +1,9 @@
-PUT http://localhost:3001/api/todos/5e3440d098d222eae747f49c
+PUT http://localhost:3001/api/todos/5e3599a4d3fe3b5842281f15
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNDQwYjI5OGQyMjJlYWU3NDdmNDliIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA0ODI3NTB9.BSbSyJdnIkdGtgsbEacaa0AS4BauW_Xu_1e6ufzB7RU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpbGxnYXRlcyIsImlkIjoiNWUzNTk5NDdkM2ZlM2I1ODQyMjgxZjEzIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE1ODA1NzA5Njd9.Fc30MEJaV8R27UoR17ANRU6GCWrnh1e4T7fGxDFV-CE
 
 {
-    "title":"Change Bill's first task",
-    "description":"Wake up late",
-    "completed": true
+    "title":"Change Bill's first task ",
+    "description":"Testing admin privileges",
+    "completed": false
 }

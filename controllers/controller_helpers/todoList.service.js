@@ -1,24 +1,28 @@
 const Todo = require("../../models/todo");
 const User = require("../../models/user.js");
-
-
-
+const {Admin} = require("../../accessControl/tokenHelper/role");
 
 const getSpecificTodo = async (request, response, next) => {
   try {
     const todo = await Todo.findById(request.params.id);
+    const todoUser = todo.user[0].toString();
 
-      const todoById = await Todo.findById(request.params.id)
-        .populate("user", { username: 1, name: 1 })
-        .populate("subTasks", { title: 1, description: 1 });
-
-      if (todoById) {
-        return response.json(todoById);
-      } else {
-        return response.status(404).end();
+    if (request.decrypted.role !== Admin) {
+      if(request.decrypted.id !== todoUser){
+        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
       }
     }
-   catch (exception) {
+
+    const todoById = await Todo.findById(request.params.id)
+      .populate("user", { username: 1, name: 1 })
+      .populate("subTasks", { title: 1, description: 1 });
+
+    if (todoById) {
+      return response.json(todoById);
+    } else {
+      return response.status(404).end();
+    }
+  } catch (exception) {
     next(exception);
   }
 };
@@ -33,9 +37,7 @@ const postTodo = async (request, response, next) => {
   }
 
   try {
-    const userId = request.decrypted.id;
-
-    const user = await User.findById(userId);
+    const user = await User.findById(request.decrypted.id);
 
     const todo = new Todo({
       title: body.title,
@@ -50,8 +52,8 @@ const postTodo = async (request, response, next) => {
     await user.save();
 
     const result = await Todo.findById(savedTodo.id)
-    .populate('user', {username: 1, name: 1})
-    .populate('subtodos', { title: 1, description: 1 })
+      .populate("user", { username: 1, name: 1 })
+      .populate("subtodos", { title: 1, description: 1 });
 
     return response.json(result.toJSON());
   } catch (exception) {
@@ -61,6 +63,15 @@ const postTodo = async (request, response, next) => {
 
 const deleteTodo = async (request, response, next) => {
   try {
+    const todo = await Todo.findById(request.params.id);
+    const todoUser = todo.user[0].toString();
+
+    if (request.decrypted.role !== Admin) {
+      if(request.decrypted.id !== todoUser){
+        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
+      }
+    }
+
     const deletedTask = await Todo.findByIdAndDelete(request.params.id);
 
     if (deletedTask) {
@@ -81,10 +92,17 @@ const updateTodo = async (request, response, next) => {
   const body = request.body;
 
   try {
-    const updatedTodo = await Todo.findById(request.params.id);
+    const todo = await Todo.findById(request.params.id);
+    const todoUser = todo.user[0].toString();
 
-    if(!updatedTodo){
-      response.status(404).send({ message: "Todo does not exist"})
+    if (request.decrypted.role !== Admin) {
+      if(request.decrypted.id !== todoUser){
+        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
+      }
+    }
+
+    if (!todo) {
+      response.status(404).send({ message: "Todo does not exist" });
     }
 
     const new_todo = {
@@ -93,7 +111,7 @@ const updateTodo = async (request, response, next) => {
       completed: body.completed || false,
       todoId: request.params.id
     };
-    
+
     const updateTodoComplete = await Todo.findByIdAndUpdate(
       request.params.id,
       new_todo
@@ -112,22 +130,30 @@ const markAsComplete = async (request, response, next) => {
   const body = request.body;
 
   try {
-    const todoTask = await Todo.findById(request.params.id);
+    const todo = await Todo.findById(request.params.id);
+    const todoUser = todo.user[0].toString();
 
-    if(!todoTask){
-      return response.status(404).send({ message: "Todo does not exist"})
+    if (request.decrypted.role !== Admin) {
+      if(request.decrypted.id !== todoUser){
+        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
+      }
+    }
+
+    if (!todo) {
+      return response.status(404).send({ message: "Todo does not exist" });
     }
     const completed_status = body.completed;
-    todoTask.completed = completed_status;
-    
+    todo.completed = completed_status;
+
     const updateTodo = await Todo.findByIdAndUpdate(
       request.params.id,
-      todoTask
+      todo
     );
 
     const resultAfterUpdate = await Todo.findById(request.params.id)
       .populate("user", { username: 1, name: 1 })
       .populate("subTasks", { title: 1, description: 1 });
+    
     return response.json(resultAfterUpdate.toJSON());
   } catch (exception) {
     next(exception);

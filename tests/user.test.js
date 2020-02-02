@@ -4,14 +4,9 @@ const app = require("../app");
 const User = require("../models/user");
 const Todo = require("../models/todo");
 const Subtasks = require("../models/subtodos");
-const { todosinDB, usersInDb, subtodosinDb } = require("./test_helper");
+const { todosinDB, usersInDb, subtodosinDb, emptyDatabase } = require("./test_helper");
 const api = supertest(app);
 
-async function emptyDatabase() {
-  await User.remove({});
-  await Todo.remove({});
-  await Subtasks.remove({});
-}
 
 let subtodotoken = ''
 
