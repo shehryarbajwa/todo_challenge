@@ -1,4 +1,4 @@
-# todo_challenge
+# Todo Challenge
 TodoList challenge in Node, Express, MongoDB <br>
 The TodoListAPI is organized around REST
 
@@ -44,7 +44,10 @@ Admin can view all the Users, Todos, Subtodos of the entire application
 6-Proceed to the endpoint to login. Once logged in, you will be provided with an access token that will validate all your API Endpoint requests. Store the token in a safe place since you will require it to access all your application data. In addition, you can store your userId, that is generated as id from the request to check your user details.
 
 ## endpoint: http://localhost:3001/api/users/login
+(https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/login_user.png)
+<br>
 
+![alt Create User Response](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/login_response.png)
 
 7-To get the user's active todos, subtodos and the user details, proceed to the endpoint and provide the user's id generated from the previous request:
 Make sure you provide the bearer token and request's content-type in the format:
