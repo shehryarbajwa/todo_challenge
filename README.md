@@ -5,15 +5,15 @@ The TodoListAPI is organized around REST
 The TodoListAPI uses JWT tokens to authenticate requests. 
 
 ## Stack Used:
-Node.js
-MongoDB
-Express.js
-JWT Tokens
-Jest
+Node.js <br>
+MongoDB <br>
+Express.js <br>
+JWT Tokens <br>
+Jest <br>
 
 ## Tools used:
-VS Code .rest client
-Postman
+VS Code .rest client <br>
+Postman <br>
 
 ## Access Control
 
