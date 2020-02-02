@@ -84,22 +84,18 @@ Bearer: XXXXXXXXXXXX <br>
 
 4-Edit a todo you created with an updated title, description, completed status. In case completed status is not set, it will be set to false
 
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_todo/get_todo.png)
+
 ## endpoint: PUT http://localhost:3001/api/todos/:id
 
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo.png)
 ![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo_response.png)
 
 
-![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_todo/get_todo.png)
-
-13- To see an individual todo task, navigate to the endpoint, and provide your todoId.
-Sample request:
-GET http://localhost:3001/api/todos/5e33d6e0432f676a43ea0ff9
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-
-endpoint:                   http://localhost:3001/api/todos/5e33d6e0432f676a43ea0ff9
-
+5-Change a todo's completed status to True
+## endpoint: PUT http://localhost:3001/api/todos/:id/completed
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_todo_status.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_todo_response.png)
 
 
 14-In case you forgot your Todo's id, navigate to the get_user Route and provide your access token and userId to be able to access your todos.
