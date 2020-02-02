@@ -1,14 +1,24 @@
 # todo_challenge
 TodoList challenge in Node, Express, MongoDB
+The TodoListAPI is organized around REST
 
-Instructions on how to run the project:
+The TodoListAPI uses JWT tokens to authenticate requests. 
 
-1-On your terminal, run npm install --save-dev to download all the project dependencies.
+
+
+## Instructions on how to run the project:
+
+1-On your terminal, run npm install to download all the project dependencies.
 
 2-Run npm start to start the server at the port specified in the .env file
 
+3-The .env file contains the MONGODB_URI, TEST_MONGODB_URI, SECRET, and a TEST_SECRET reference.
 
-3-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Please proceed with the following steps:
+4-These references will be used to authorize access to a database(Test and Production) and validate JWT tokens. 
+
+5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Please proceed with the following steps:
+
+
 
 4-Create a User by providing a name, username, email, password making sure username is not less than 5 characters. All the fields are mandatory. The email field determines whether a user is an Admin or User.
 
