@@ -18,7 +18,7 @@ The TodoListAPI uses JWT tokens to authenticate requests.
 
 5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Please proceed with the following steps:
 
-
+![alt Create User](https://github.com/shehryarbajwa/todo_challenge/postman_requests_screenshots/create_usser.png)
 
 4-Create a User by providing a name, username, email, password making sure username is not less than 5 characters. All the fields are mandatory. The email field determines whether a user is an Admin or User.
 
