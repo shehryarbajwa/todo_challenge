@@ -4,7 +4,24 @@ The TodoListAPI is organized around REST
 
 The TodoListAPI uses JWT tokens to authenticate requests. 
 
+## Stack Used:
+Node.js
+MongoDB
+Express.js
+JWT Tokens
+Jest
 
+## Tools used:
+VS Code .rest client
+Postman
+
+## Access Control
+
+Access Control List has been created by creating an admin who has access to every route of Users, Todos, SubTasks. Users without valid access token cannot view their Todos,SubTasks, User Information.
+
+Admin can make GET, PUT, DELETE requests to todos of each user.
+Admin can make GET, PUT, DELETE requests to sub todos of todos for each user
+Admin can view all the Users, Todos, Subtodos of the entire application
 
 ## Instructions on how to run the project:
 
@@ -17,20 +34,19 @@ The TodoListAPI uses JWT tokens to authenticate requests.
 4-These references will be used to authorize access to a database(Test and Production) and validate JWT tokens. 
 
 5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Create a User by providing a name, username, email, password making sure username is not less than 5 characters. Username, email and password are mandatory. The email field determines whether a user is an Admin or User. Please proceed with the following steps.
-
+## endpoint: http://localhost:3001/api/users/signup
 ![alt Create User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/Create_User.png)
 ![alt Response from User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/response_create_user.png)
-## endpoint: http://localhost:3001/api/users/signup
 
-6-Proceed to the endpoint to login. Once logged in, you will be provided with an access token that will validate all your API Endpoint requests. Store the token in a safe place since you will require it to access all your application data.
+6-Proceed to the endpoint to login. Once logged in, you will be provided with an access token that will validate all your API Endpoint requests. Store the token in a safe place since you will require it to access all your application data. In addition, you can store your userId, that is generated as id from the request to check your user details.
 
+## endpoint: http://localhost:3001/api/users/login
 ![alt Login User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/Login_User.png)
 ![alt Response from User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/Login_Response.png)
-## endpoint: http://localhost:3001/api/users/login
 
-7-To get the user's active todos, subtodos and the user details, proceed to the endpoint:
+7-To get the user's active todos, subtodos and the user details, proceed to the endpoint and provide the user's id generated from the previous request:
 Make sure you provide the bearer token and request's content-type in the format:
-
+## endpoint: http://localhost:3001/api/users/:id
 Content-Type: application/json
 Bearer: XXXXXXXXXXXX
 
@@ -41,33 +57,11 @@ Bearer: XXXXXXXXXXXX
 ![alt Add Bearer Token](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/add_bearer_token.png)
 ![alt Content-Type ](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/add_content_type.png)
 
+## CRUD Operations
 
+1-Next we start doing CRUD operations.
 
-5-Access Control List has been created by creating an admin who has access to every route of Users, Todos, SubTasks. Users without valid access token cannot view their Todos,SubTasks, User Information.
-
-6-Admin is registered by using the email address ending in 
-
-Things to note: Admin Role Access-Sign up with     @commercebear.com
-example: steve@commercebear.com
-         eric@commercebear.com
-
-
-7-Once you have created your User account, proceed to request called login.
-
-Things to note:     endpoint: http://localhost:3001/api/login
-
-8-Once logged in, you will be provided an access token and a userId. 
-Please save them or note them down since it will be requested on every endpoint you access.
-In case you forget, head back to the http://localhost:3001/api/login so you can generate an access token and find your userId.
-
-9-You have the option of seeing all your todos and sub-todos after logging in. Initially they will be empty. If however, you want to check it out, make a note of your userId and navigate to the following endpoint
-
-endpoint:           http://localhost:3001/api/users/
-
-
-10-Next we start doing CRUD operations.
-
-11-Navigate to the requests file in the todo_requests folder. And click create_todo.rest file. Alternatively, you can use curl to access the endpoint. Please donot forget to use your access token generated earlier to add to your request Authorization with bearer preceeeding it. 
+2-Navigate to the requests file in the todo_requests folder. And click create_todo.rest file. Alternatively, you can use curl to access the endpoint. Please donot forget to use your access token generated earlier to add to your request Authorization with bearer preceeeding it. 
 Please providee the title, description and completed status of the todo. In case you donot specifiy the completed status, it will be set to false.
 
 endpoint:           http://localhost:3001/api/todos/
@@ -86,7 +80,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb
     "completed": false
 }
 
-12-To test out the application better, it is recommended to create two todo tasks. Again following the same procedure.
+3-To test out the application better, it is recommended to create two todo tasks. Again following the same procedure.
 
 13- To see an individual todo task, navigate to the endpoint, and provide your todoId.
 Sample request:
