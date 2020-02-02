@@ -103,106 +103,47 @@ Bearer: XXXXXXXXXXXX <br>
 ![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/delete_todo/delete_todo.png)
 
 
+## SubTodos
+## Note in this example, we have deleted the todo we created, therefore it is advised to create two todos so once you have deleted one you still have another to create subtodos for.
 
-14-In case you forgot your Todo's id, navigate to the get_user Route and provide your access token and userId to be able to access your todos.
-
-SAMPLE REQUEST
-GET http://localhost:3001/api/users/5e33cef2f055d4650112b9b0
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-endpoint: http://localhost:3001/api/users/5e33cef2f055d4650112b9b0
+## TodoId: 5e36ebcbe5e76abab8bd41c8
+## Just like in users, it is better to take note of your userId, for subtodos, it is better to note down your todoId since it will be used to create subtodos.
 
 
-15- Lets assume we made a mistake and want to delete one of our todos. Make a note of the request you made.
-Sample request:
-DELETE http://localhost:3001/api/todos/5e33d6e0432f676a43ea0ff9
-Authorization: bearer 
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
+## endpoint: POST http://localhost:3001/api/subtodos/
+
+The endpoint requires the title, description, completed and todoId as body properties. Title, Description, TodoId are mandatory
+
+![3](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtask.png)
+![4](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/post_subtask/post_subtask_response.png)
+
+3-Get the details of the todo that you just posted. This endpoint is accessibly if you provide the todoId in the request as parameters. 
+## endpoint: GET http://localhost:3001/api/todos/:id
+
+4-Edit a todo you created with an updated title, description, completed status. In case completed status is not set, it will be set to false
+
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_todo/get_todo.png)
+
+## endpoint: PUT http://localhost:3001/api/todos/:id
+
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo.png)
+![1](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_todo/edit_todo_response.png)
 
 
-16-Lets say we completed our morning todo and want to update its status from completed = false to true
-Make sure there is /completed after you input the id of the todo
+5-Change a todo's completed status to True
+## endpoint: PUT http://localhost:3001/api/todos/:id/completed
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_todo_status.png)
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/edit_status/edit_status_response.png)
 
-Sample Request:
-PUT         http://localhost:3001/api/todos/5e33d5db432f676a43ea0ff8/completed
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-endpoint: http://localhost:3001/api/todos/5e33d5db432f676a43ea0ff8/completed
+6-Delete a todo
 
-17- Next, lets update our todo to change the title and description
-Sample Request: 
-PUT         http://localhost:3001/api/todos/5e33d5db432f676a43ea0ff8
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-endpoint:       http://localhost:3001/api/todos/{id}
-
-
-18-Next lets create a subTask.
-
-Here due to being time constrained, the User has to provide the todoId that needs to have the subTasks. A better and more improved design decision would have been to fetch this from the schema automatically by nesting a schema within a schema and fetching ids that way. Additionally, you could use JS or React's set Id on the front-end and pass it automatically to the backend
-
-Sample Request: 
-POST         http://localhost:3001/api/subtasks
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-endpoint:       http://localhost:3001/api/subtasks
-
-Sample Body:
-{
-	"title":"Turn Brewing Machine On",
-    "description":"At 8.45 am",
-    "completed": false,
-    "todoId":"5e33d6e0432f676a43ea0ff9"
-}
-
-19-Next Lets try to change the completed status of this subTask.
-
-Sample Request: 
-PUT         http://localhost:3001/api/subtasks/5e33e3da6328707c31b9f13a/completed
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-endpoint:       http://localhost:3001/api/subtasks/5e33e3da6328707c31b9f13a
-
-Sample Body:
-{
-    "completed": true
-}
-
-
-20-Next lets update a subTask
-
-Sample Request:
-PUT         http://localhost:3001/api/subtasks/5e33e3da6328707c31b9f13a
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-{
-	"title": "Do meditation before heading for office",
-    "description": "Headspace at 8.15 am",
-    "completed": false
-}
-
-21-Next we can delete a specific subTasks
-Sample Request: 
-DELETE         http://localhost:3001/api/subtasks/5e33e3da6328707c31b9f13a
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
-endpoint:       http://localhost:3001/api/subtasks/5e33e3da6328707c31b9f13a
-
-21-Finally our last subTask endpoint to view a specific subTask
-GET http://localhost:3001/api/subtasks/5e33e3da6328707c31b9f13a
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
+## endpoint: DELETE http://localhost:3001/api/todos/:id
+![0](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/delete_todo/delete_todo.png)
 
 
 
-22-Admins have special rights in the system. They can view all available users, todos, and SubTasks
-In addition, admins can make changes CRUD to these endpoints.
-
-Admin Routes are all endpoints and one additional endpoint to view all userData.
-These are secure and user is not allowed to access this endpoint.
-
-GET http://localhost:3001/api/users/admin
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNqb2JzIiwiaWQiOiI1ZTMzY2VmMmYwNTVkNDY1MDExMmI5YjAiLCJyb2xlIjoiVXNlciIsImlhdCI6MTU4MDQ2MDUzMiwiZXhwIjoxNTgwNDgyMTMyfQ.uGelhn_IZaXfFEw4spBfFOY-4t4LA-1004SV_eg_72E
 
 
-Please Note that 
-
-username: sjobs
-password: steve123
-
-is a dummy account that you can use for testing. In case, the token expires, please login again and get a new token. If that happens the above mentioned tokens will not work as a new one will be gennerated.
 
 
 
