@@ -1,43 +1,28 @@
-
-const User = require("../../models/user.js");
-const Todo = require("../../models/todo.js");
 const Subtodos = require("../../models/subtodos");
+const { Admin } = require("../../accessControl/tokenHelper/role.js");
+const Todo = require("../../models/todo");
 
-let todoId = ''
-let todoUser = ''
 
-const subTaskById = async (id) => {
-    const _subtasks = await Subtodos.findById(id);
-    todoId = _subtasks.parentTodo[0].toString();
-    return _subtasks
-}
+const checkforAdminSubtasks = async (request) => {
+  const _subtodos = await Subtodos.findById(request.params.id);
 
-console.log('todoid here is', todoId);
+  if (!_subtodos) {
+    return response.status(404).json({ error: "subtodo does not exist" });
+  }
 
-const todoById = async (todoId) => {
-    const todo = await Todo.findById(todoId);
-    todoUser = todo.user[0].toString()
-    return todo
-}   
+  const todoId = _subtodos.parentTodo[0].toString();
+  const todo = await Todo.findById(todoId);
+  const todoUser = todo.user[0].toString();
 
-const updateSubTodo = async (id, task) => {
-    const updateTodo = await SubTodo.findByIdAndUpdate(id, task);
-    return updateTodo
-}
-
-const checkForAdminPrivileges = async (providedRole, AdminRole, User, next) => {
-    if (providedRole.role !== AdminRole) {
-        if(providedRole.id !== User){
-          return response.status(401).json({ message: "Invalid user" });
-        }
-        next()
+  if (request.decrypted.role !== Admin) {
+    if (request.decrypted.id !== todoUser) {
+      return response.status(403).json({
+        message: "The user doesnt have permission to access this request."
+      });
     }
-}
-// if (request.decrypted.role !== Admin) {
-//     if(request.decrypted.id !== todoUser){
-//       return response.status(401).json({ message: "Invalid user" });
-//     }
-//   }
+  }
 
+  return todoId
+};
 
-module.exports = {subTaskById, todoById, todoId, todoUser, checkForAdminPrivileges }
+module.exports = { checkforAdminSubtasks };

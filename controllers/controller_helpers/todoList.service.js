@@ -1,17 +1,10 @@
 const Todo = require("../../models/todo");
 const User = require("../../models/user.js");
-const {Admin} = require("../../accessControl/tokenHelper/role");
+const {checkforAdminRights} = require("../../controllers/service_helpers/todolist.helper.js")
 
 const getSpecificTodo = async (request, response, next) => {
   try {
-    const todo = await Todo.findById(request.params.id);
-    const todoUser = todo.user[0].toString();
-
-    if (request.decrypted.role !== Admin) {
-      if(request.decrypted.id !== todoUser){
-        return response.status(403).json({ message: "The user doesn't have permission to access this request." });
-      }
-    }
+    await checkforAdminRights(request)
 
     const todoById = await Todo.findById(request.params.id)
       .populate("user", { username: 1, name: 1 })
@@ -63,14 +56,7 @@ const postTodo = async (request, response, next) => {
 
 const deleteTodo = async (request, response, next) => {
   try {
-    const todo = await Todo.findById(request.params.id);
-    const todoUser = todo.user[0].toString();
-
-    if (request.decrypted.role !== Admin) {
-      if(request.decrypted.id !== todoUser){
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
+    await checkforAdminRights(request)
 
     const deletedTask = await Todo.findByIdAndDelete(request.params.id);
 
@@ -92,18 +78,7 @@ const updateTodo = async (request, response, next) => {
   const body = request.body;
 
   try {
-    const todo = await Todo.findById(request.params.id);
-    const todoUser = todo.user[0].toString();
-
-    if (request.decrypted.role !== Admin) {
-      if(request.decrypted.id !== todoUser){
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
-
-    if (!todo) {
-      response.status(404).send({ message: "Todo does not exist" });
-    }
+    await checkforAdminRights(request)
 
     const new_todo = {
       title: body.title,
@@ -130,18 +105,9 @@ const markAsComplete = async (request, response, next) => {
   const body = request.body;
 
   try {
-    const todo = await Todo.findById(request.params.id);
-    const todoUser = todo.user[0].toString();
+    await checkforAdminRights(request)
 
-    if (request.decrypted.role !== Admin) {
-      if(request.decrypted.id !== todoUser){
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
-
-    if (!todo) {
-      return response.status(404).send({ message: "Todo does not exist" });
-    }
+    const todo = await Todo.findById(request.params.id)
     const completed_status = body.completed;
     todo.completed = completed_status;
 

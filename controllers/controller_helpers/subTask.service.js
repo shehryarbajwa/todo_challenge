@@ -2,24 +2,11 @@ const User = require("../../models/user.js");
 const Todo = require("../../models/todo.js");
 const Subtodos = require("../../models/subtodos");
 const { Admin } = require("../../accessControl/tokenHelper/role.js");
+const {checkforAdminSubtasks, todoId} = require("../../controllers/service_helpers/subtask.helper.js")
 
 const getSpecificSubTask = async (request, response, next) => {
   try {
-    const _subtodos = await Subtodos.findById(request.params.id);
-
-    if (!_subtodos) {
-      return response.status(404).json({ error: "subtodo does not exist" });
-    }
-
-    const todoId = _subtodos.parentTodo[0].toString();
-    const todo = await Todo.findById(todoId);
-    const todoUser = todo.user[0].toString();
-
-    if (request.decrypted.role !== Admin) {
-      if (request.decrypted.id !== todoUser) {
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
+    await checkforAdminSubtasks(request)
 
     const resultSubtodos = await Subtodos.findById(request.params.id)
     .populate("parentTodo", { title: 1 });
@@ -78,16 +65,7 @@ const postSubTask = async (request, response, next) => {
 
 const deleteSubTask = async (request, response, next) => {
   try {
-    const _subtasks = await Subtodos.findById(request.params.id);
-    const todoId = _subtasks.parentTodo[0].toString();
-    const todo = await Todo.findById(todoId);
-    const todoUser = todo.user[0].toString();
-
-    if (request.decrypted.role !== Admin) {
-      if (request.decrypted.id !== todoUser) {
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
+    await checkforAdminSubtasks(request)
 
     const deletedSubTask = await Subtodos.findByIdAndDelete(request.params.id);
     if (deletedSubTask) {
@@ -104,27 +82,14 @@ const deleteSubTask = async (request, response, next) => {
 
 const updatedSubTask = async (request, response, next) => {
   try {
+    const todo_id = await checkforAdminSubtasks(request)
     const body = request.body;
-    const _subtasks = await Subtodos.findById(request.params.id);
-    const todoId = _subtasks.parentTodo[0].toString();
-    const todo = await Todo.findById(todoId);
-    const todoUser = todo.user[0].toString();
-
-    if (request.decrypted.role !== Admin) {
-      if (request.decrypted.id !== todoUser) {
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
-
-    if (!todo) {
-      return response.status(404).json({ error: "todoId doesnt exist" });
-    }
 
     const new_subTodo = {
       title: body.title,
       description: body.description,
       completed: body.completed || false,
-      parentTodo: todoId
+      parentTodo: todo_id
     };
 
     const subtodo = await Subtodos.findByIdAndUpdate(
@@ -146,22 +111,14 @@ const markAsComplete = async (request, response, next) => {
   const body = request.body;
 
   try {
-    const _subtasks = await Subtodos.findById(request.params.id);
-    const todoId = _subtasks.parentTodo[0].toString();
-    const todo = await Todo.findById(todoId);
-    const todoUser = todo.user[0].toString();
+    await checkforAdminSubtasks(request)
 
-    if (request.decrypted.role !== Admin) {
-      if (request.decrypted.id !== todoUser) {
-        return response.status(403).json({ message: "The user doesnt have permission to access this request." });
-      }
-    }
-
-    _subtasks.completed = body.completed;
+    const subTodoUpdate = await Subtodos.findById(request.params.id)
+    subTodoUpdate.completed = body.completed;
 
     const updateSubTodo = await Subtodos.findByIdAndUpdate(
       request.params.id,
-      _subtasks
+      subTodoUpdate
     );
 
     const renderSubTasks = await Subtodos.findById(
