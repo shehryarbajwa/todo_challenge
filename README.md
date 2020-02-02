@@ -16,13 +16,32 @@ The TodoListAPI uses JWT tokens to authenticate requests.
 
 4-These references will be used to authorize access to a database(Test and Production) and validate JWT tokens. 
 
-5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Please proceed with the following steps:
+5-To create the first user, in the requests folder, there is a file by the name of create_user.rest. Alternatively you could use curl or postman to make the requests. Create a User by providing a name, username, email, password making sure username is not less than 5 characters. Username, email and password are mandatory. The email field determines whether a user is an Admin or User. Please proceed with the following steps.
 
-![alt Create User](https://github.com/shehryarbajwa/todo_challenge/postman_requests_screenshots/create_usser.png)
+![alt Create User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/Create_User.png)
+![alt Response from User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/response_create_user.png)
+## endpoint: http://localhost:3001/api/users/signup
 
-4-Create a User by providing a name, username, email, password making sure username is not less than 5 characters. All the fields are mandatory. The email field determines whether a user is an Admin or User.
+6-Proceed to the endpoint to login. Once logged in, you will be provided with an access token that will validate all your API Endpoint requests. Store the token in a safe place since you will require it to access all your application data.
 
-endpoint: http://localhost:3001/api/users/signup
+![alt Login User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/Login_User.png)
+![alt Response from User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/Login_Response.png)
+## endpoint: http://localhost:3001/api/users/login
+
+7-To get the user's active todos, subtodos and the user details, proceed to the endpoint:
+Make sure you provide the bearer token and request's content-type in the format:
+
+Content-Type: application/json
+Bearer: XXXXXXXXXXXX
+
+![alt Get User Request](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user_request.png)
+![alt Response from User](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/get_user_response.png)
+
+## If in Postman, you can set the token once and make subsequent requests by providing the saved token
+![alt Add Bearer Token](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/add_bearer_token.png)
+![alt Content-Type ](https://github.com/shehryarbajwa/todo_challenge/blob/master/postman_requests_screenshots/add_content_type.png)
+
+
 
 5-Access Control List has been created by creating an admin who has access to every route of Users, Todos, SubTasks. Users without valid access token cannot view their Todos,SubTasks, User Information.
 
